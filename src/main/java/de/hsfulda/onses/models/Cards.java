@@ -37,4 +37,8 @@ public class Cards {
         return this.id;
     }
 
+    public ecolor getColor() {
+        return this.color;
+    }
+
 }
