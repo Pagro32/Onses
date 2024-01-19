@@ -13,15 +13,28 @@ public class CardsTest {
     @DisplayName("CardGetID5")
     public void CardTestGetID5() {
 
-        Cards testcard = new Cards(5, Cards.ecolor.BLACK, Cards.evalue.FIVE);
-        assertEquals(5, testcard.getId());
+        // arrange
+        int expected = 5;
+        int ID = 5;
+        // act
+        Cards testcard = new Cards(ID, Cards.ecolor.BLACK, Cards.evalue.FIVE);
+        int answer = testcard.getId();
+        // assert
+        assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("CardGetID112")
     public void CardTestGetID112() {
 
-        Cards testcard = new Cards(112, Cards.ecolor.BLUE, Cards.evalue.CHOOSEDRAW);
-        assertEquals(112, testcard.getId());
+        // arrange
+        int expected = 112;
+        int ID = 112;
+        // act
+        Cards testcard = new Cards(ID, Cards.ecolor.BLUE, Cards.evalue.CHOOSEDRAW);
+        int answer = testcard.getId();
+        // assert
+        assertEquals(expected, answer);
     }
 
 
@@ -29,15 +42,27 @@ public class CardsTest {
     @DisplayName("CardGetColorBlue")
     public void CardTestGetColorBlue() {
 
-        Cards testcard = new Cards(9, Cards.ecolor.BLUE, Cards.evalue.FIVE);
-        assertEquals(Cards.ecolor.BLUE, testcard.getColor());
+        // arrange
+        Cards.ecolor expected = Cards.ecolor.BLUE;
+        Cards.ecolor color = Cards.ecolor.BLUE;
+        // act
+        Cards testcard = new Cards(9, color, Cards.evalue.FIVE);
+        Cards.ecolor answer = testcard.getColor();
+        // assert
+        assertEquals(expected, answer);
     }
     @Test
     @DisplayName("CardGetColorBlack")
     public void CardTestGetColorBlack() {
 
-        Cards testcard = new Cards(15, Cards.ecolor.BLACK, Cards.evalue.CHOOSE);
-        assertEquals(Cards.ecolor.BLACK, testcard.getColor());
+        // arrange
+        Cards.ecolor expected = Cards.ecolor.BLACK;
+        Cards.ecolor color = Cards.ecolor.BLACK;
+        // act
+        Cards testcard = new Cards(15, color, Cards.evalue.CHOOSE);
+        Cards.ecolor answer = testcard.getColor();
+        // assert
+        assertEquals(expected, answer);
     }
 
 
@@ -45,15 +70,27 @@ public class CardsTest {
     @DisplayName("CardGetValueThree")
     public void CardTestGetValueThree() {
 
-        Cards testcard = new Cards(2, Cards.ecolor.BLUE, Cards.evalue.THREE);
-        assertEquals(Cards.evalue.THREE, testcard.getValue());
+        // arrange
+        Cards.evalue expected = Cards.evalue.THREE;
+        Cards.evalue value = Cards.evalue.THREE;
+        // act
+        Cards testcard = new Cards(2, Cards.ecolor.BLUE, value);
+        Cards.evalue answer = testcard.getValue();
+        // assert
+        assertEquals(expected, answer);
     }
     @Test
     @DisplayName("CardGetValueSkip")
     public void CardTestGetValueSkip() {
 
-        Cards testcard = new Cards(19, Cards.ecolor.BLACK, Cards.evalue.SKIP);
-        assertEquals(Cards.evalue.SKIP, testcard.getValue());
+        // arrange
+        Cards.evalue expected = Cards.evalue.SKIP;
+        Cards.evalue value = Cards.evalue.SKIP;
+        // act
+        Cards testcard = new Cards(19, Cards.ecolor.BLACK, value);
+        Cards.evalue answer = testcard.getValue();
+        // assert
+        assertEquals(expected, answer);
     }
 
 }
