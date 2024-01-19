@@ -20,8 +20,21 @@ public class Cards {
             }
         };
 
-        private int id;
-        private ecolor color;
-        private evalue value;
+        private final int id;
+        private final ecolor color;
+        private final evalue value;
+
+
+    public Cards(int id, ecolor color, evalue value)
+    {
+        this.id = id;
+        this.color = color;
+        this.value = value;
+    }
+
+
+    public int getId() {
+        return this.id;
+    }
 
 }
