@@ -41,4 +41,7 @@ public class Cards {
         return this.color;
     }
 
+    public evalue getValue() {
+        return this.value;
+    }
 }

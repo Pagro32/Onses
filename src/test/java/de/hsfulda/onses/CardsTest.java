@@ -24,6 +24,7 @@ public class CardsTest {
         assertEquals(112, testcard.getId());
     }
 
+
     @Test
     @DisplayName("CardGetColorBlue")
     public void CardTestGetColorBlue() {
@@ -39,5 +40,20 @@ public class CardsTest {
         assertEquals(Cards.ecolor.BLACK, testcard.getColor());
     }
 
+
+    @Test
+    @DisplayName("CardGetValueThree")
+    public void CardTestGetValueThree() {
+
+        Cards testcard = new Cards(2, Cards.ecolor.BLUE, Cards.evalue.THREE);
+        assertEquals(Cards.evalue.THREE, testcard.getValue());
+    }
+    @Test
+    @DisplayName("CardGetValueSkip")
+    public void CardTestGetValueSkip() {
+
+        Cards testcard = new Cards(19, Cards.ecolor.BLACK, Cards.evalue.SKIP);
+        assertEquals(Cards.evalue.SKIP, testcard.getValue());
+    }
 
 }
