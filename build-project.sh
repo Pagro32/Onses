@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "RUN JUnit Tests"
-mvn test
+mvn clean test
