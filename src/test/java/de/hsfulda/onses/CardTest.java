@@ -5,9 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import de.hsfulda.onses.models.Cards;
+import de.hsfulda.onses.models.Card;
 
-public class CardsTest {
+public class CardTest {
 
     @Test
     @DisplayName("CardGetID5")
@@ -17,7 +17,7 @@ public class CardsTest {
         int expected = 5;
         int ID = 5;
         // act
-        Cards testcard = new Cards(ID, Cards.ecolor.BLACK, Cards.evalue.FIVE);
+        Card testcard = new Card().setId(ID).setColor(Card.Color.BLACK).setValue(Card.Value.FIVE);
         int answer = testcard.getId();
         // assert
         assertEquals(expected, answer);
@@ -31,7 +31,7 @@ public class CardsTest {
         int expected = 112;
         int ID = 112;
         // act
-        Cards testcard = new Cards(ID, Cards.ecolor.BLUE, Cards.evalue.CHOOSEDRAW);
+        Card testcard = new Card().setId(ID).setColor(Card.Color.BLUE).setValue(Card.Value.CHOOSEDRAW);
         int answer = testcard.getId();
         // assert
         assertEquals(expected, answer);
@@ -43,11 +43,11 @@ public class CardsTest {
     public void CardTestGetColorBlue() {
 
         // arrange
-        Cards.ecolor expected = Cards.ecolor.BLUE;
-        Cards.ecolor color = Cards.ecolor.BLUE;
+        Card.Color expected = Card.Color.BLUE;
+        Card.Color color = Card.Color.BLUE;
         // act
-        Cards testcard = new Cards(9, color, Cards.evalue.FIVE);
-        Cards.ecolor answer = testcard.getColor();
+        Card testcard = new Card().setId(9).setColor(color).setValue(Card.Value.FIVE);
+        Card.Color answer = testcard.getColor();
         // assert
         assertEquals(expected, answer);
     }
@@ -56,11 +56,11 @@ public class CardsTest {
     public void CardTestGetColorBlack() {
 
         // arrange
-        Cards.ecolor expected = Cards.ecolor.BLACK;
-        Cards.ecolor color = Cards.ecolor.BLACK;
+        Card.Color expected = Card.Color.BLACK;
+        Card.Color color = Card.Color.BLACK;
         // act
-        Cards testcard = new Cards(15, color, Cards.evalue.CHOOSE);
-        Cards.ecolor answer = testcard.getColor();
+        Card testcard = new Card().setId(15).setColor(color).setValue(Card.Value.CHOOSE);
+        Card.Color answer = testcard.getColor();
         // assert
         assertEquals(expected, answer);
     }
@@ -71,11 +71,11 @@ public class CardsTest {
     public void CardTestGetValueThree() {
 
         // arrange
-        Cards.evalue expected = Cards.evalue.THREE;
-        Cards.evalue value = Cards.evalue.THREE;
+        Card.Value expected = Card.Value.THREE;
+        Card.Value value = Card.Value.THREE;
         // act
-        Cards testcard = new Cards(2, Cards.ecolor.BLUE, value);
-        Cards.evalue answer = testcard.getValue();
+        Card testcard = new Card().setId(2).setColor(Card.Color.BLUE).setValue(value);
+        Card.Value answer = testcard.getValue();
         // assert
         assertEquals(expected, answer);
     }
@@ -84,11 +84,11 @@ public class CardsTest {
     public void CardTestGetValueSkip() {
 
         // arrange
-        Cards.evalue expected = Cards.evalue.SKIP;
-        Cards.evalue value = Cards.evalue.SKIP;
+        Card.Value expected = Card.Value.SKIP;
+        Card.Value value = Card.Value.SKIP;
         // act
-        Cards testcard = new Cards(19, Cards.ecolor.BLACK, value);
-        Cards.evalue answer = testcard.getValue();
+        Card testcard = new Card().setId(19).setColor(Card.Color.BLACK).setValue(value);
+        Card.Value answer = testcard.getValue();
         // assert
         assertEquals(expected, answer);
     }
