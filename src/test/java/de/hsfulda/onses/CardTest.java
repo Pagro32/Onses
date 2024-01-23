@@ -17,7 +17,7 @@ public class CardTest {
         int expected = 5;
         int ID = 5;
         // act
-        Card testcard = new Card(ID, Card.ecolor.BLACK, Card.evalue.FIVE);
+        Card testcard = new Card(ID, Card.Color.BLACK, Card.evalue.FIVE);
         int answer = testcard.getId();
         // assert
         assertEquals(expected, answer);
@@ -31,7 +31,7 @@ public class CardTest {
         int expected = 112;
         int ID = 112;
         // act
-        Card testcard = new Card(ID, Card.ecolor.BLUE, Card.evalue.CHOOSEDRAW);
+        Card testcard = new Card(ID, Card.Color.BLUE, Card.evalue.CHOOSEDRAW);
         int answer = testcard.getId();
         // assert
         assertEquals(expected, answer);
@@ -43,11 +43,11 @@ public class CardTest {
     public void CardTestGetColorBlue() {
 
         // arrange
-        Card.ecolor expected = Card.ecolor.BLUE;
-        Card.ecolor color = Card.ecolor.BLUE;
+        Card.Color expected = Card.Color.BLUE;
+        Card.Color color = Card.Color.BLUE;
         // act
         Card testcard = new Card(9, color, Card.evalue.FIVE);
-        Card.ecolor answer = testcard.getColor();
+        Card.Color answer = testcard.getColor();
         // assert
         assertEquals(expected, answer);
     }
@@ -56,11 +56,11 @@ public class CardTest {
     public void CardTestGetColorBlack() {
 
         // arrange
-        Card.ecolor expected = Card.ecolor.BLACK;
-        Card.ecolor color = Card.ecolor.BLACK;
+        Card.Color expected = Card.Color.BLACK;
+        Card.Color color = Card.Color.BLACK;
         // act
         Card testcard = new Card(15, color, Card.evalue.CHOOSE);
-        Card.ecolor answer = testcard.getColor();
+        Card.Color answer = testcard.getColor();
         // assert
         assertEquals(expected, answer);
     }
@@ -74,7 +74,7 @@ public class CardTest {
         Card.evalue expected = Card.evalue.THREE;
         Card.evalue value = Card.evalue.THREE;
         // act
-        Card testcard = new Card(2, Card.ecolor.BLUE, value);
+        Card testcard = new Card(2, Card.Color.BLUE, value);
         Card.evalue answer = testcard.getValue();
         // assert
         assertEquals(expected, answer);
@@ -87,7 +87,7 @@ public class CardTest {
         Card.evalue expected = Card.evalue.SKIP;
         Card.evalue value = Card.evalue.SKIP;
         // act
-        Card testcard = new Card(19, Card.ecolor.BLACK, value);
+        Card testcard = new Card(19, Card.Color.BLACK, value);
         Card.evalue answer = testcard.getValue();
         // assert
         assertEquals(expected, answer);

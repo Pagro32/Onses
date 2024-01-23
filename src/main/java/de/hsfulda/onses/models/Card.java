@@ -2,14 +2,8 @@ package de.hsfulda.onses.models;
 
 public class Card {
 
-        public enum ecolor {
+        public enum Color {
             RED, BLUE, GREEN, YELLOW, BLACK;
-
-            private static final ecolor[] colors = ecolor.values();
-            public static ecolor getColors (int n)
-            {
-                return ecolor.colors[n];
-            }
         };
         public enum evalue {
             ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, DRAWTWO, SKIP, REVERSE, CHOOSE, CHOOSEDRAW;
@@ -21,11 +15,11 @@ public class Card {
         };
 
         private final int id;
-        private final ecolor color;
+        private final Color color;
         private final evalue value;
 
 
-    public Card(int id, ecolor color, evalue value)
+    public Card(int id, Color color, evalue value)
     {
         this.id = id;
         this.color = color;
@@ -37,7 +31,7 @@ public class Card {
         return this.id;
     }
 
-    public ecolor getColor() {
+    public Color getColor() {
         return this.color;
     }
 
