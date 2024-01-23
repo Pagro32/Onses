@@ -1,6 +1,6 @@
 package de.hsfulda.onses.models;
 
-public class Cards {
+public class Card {
 
         public enum ecolor {
             RED, BLUE, GREEN, YELLOW, BLACK;
@@ -25,7 +25,7 @@ public class Cards {
         private final evalue value;
 
 
-    public Cards(int id, ecolor color, evalue value)
+    public Card(int id, ecolor color, evalue value)
     {
         this.id = id;
         this.color = color;
