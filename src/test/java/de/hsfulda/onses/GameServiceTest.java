@@ -35,4 +35,34 @@ public class GameServiceTest {
         // assert
         assertEquals(input, answer);
     }
+
+    @Test
+    @DisplayName("allowedMoveSameColorRed")
+    public void allowedMoveSameColorRed() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.TWO);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+
+        boolean answer = gameService.allowedMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+    @Test
+    @DisplayName("allowedMoveSameColorBlue")
+    public void allowedMoveSameColorBlue() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.BLUE).setValue(Card.Value.THREE);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.ONE));
+
+        boolean answer = gameService.allowedMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+
 }
