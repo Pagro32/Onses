@@ -20,9 +20,18 @@ public class GameService {
     public void playCard(Player player, Card card)
     {
      // add lastPlayedCard back to drawCardDeck
-     game.setLastPlayedCard(card);
+         game.setLastPlayedCard(card);
      // check for special rules (draw, colorchoose, skip,...)
+    }
 
+    public boolean allowedMove(Player player, Card card)
+    {
+        boolean isAllowed = false;
+        Card lastCard = game.getLastPlayedCard();
+        // rules:
+        if (card.getColor() == lastCard.getColor()) isAllowed = true; // same color
+
+        return isAllowed;
     }
 
 }
