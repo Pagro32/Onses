@@ -13,6 +13,10 @@ public class GameService {
         this(new Game());
     }
 
+    public Game getGame() {
+        return game;
+    }
+
     public void playCard(Player player, Card card)
     {
      // add lastPlayedCard back to drawCardDeck
@@ -20,4 +24,5 @@ public class GameService {
      // check for special rules (draw, colorchoose, skip,...)
 
     }
+
 }
