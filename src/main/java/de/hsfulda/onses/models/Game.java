@@ -19,4 +19,9 @@ public class Game {
     public ArrayList<Card> getDrawCardDeck() {
         return drawCardDeck;
     }
+
+    public void addCardToDrawCardDeck(Card card) {
+        drawCardDeck.add(card);
+    }
+
 }

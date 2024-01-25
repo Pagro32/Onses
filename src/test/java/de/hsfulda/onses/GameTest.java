@@ -16,6 +16,18 @@ public class GameTest {
 
         game.setLastPlayedCard(card);
 
-        assertEquals(card, answer);
+        assertEquals(game.getLastPlayedCard(), answer);
+    }
+
+    @Test
+    @DisplayName("GetDrawCardDeck")
+    public void GetDrawCardDeck() {
+        Game game = new Game();
+        Card card = new Card().setColor(Card.Color.RED).setValue(Card.Value.EIGHT);
+        Card answer = card;
+
+        game.addCardToDrawCardDeck(card);
+
+        assertEquals(game.getDrawCardDeck().getFirst(), answer);
     }
 }
