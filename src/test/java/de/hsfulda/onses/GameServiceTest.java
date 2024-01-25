@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Player;
-import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.services.GameService;
 
 public class GameServiceTest {
@@ -37,8 +36,8 @@ public class GameServiceTest {
     }
 
     @Test
-    @DisplayName("allowedMoveSameColorRed")
-    public void allowedMoveSameColorRed() {
+    @DisplayName("legalMoveSameColorRed")
+    public void legalMoveSameColorRed() {
         // arrange
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.TWO);
         boolean expected = true;
@@ -46,13 +45,13 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
 
-        boolean answer = gameService.allowedMove(new Player(), input);
+        boolean answer = gameService.legalMove(new Player(), input);
         // assert
         assertEquals(expected, answer);
     }
     @Test
-    @DisplayName("allowedMoveSameColorBlue")
-    public void allowedMoveSameColorBlue() {
+    @DisplayName("legalMoveSameColorBlue")
+    public void legalMoveSameColorBlue() {
         // arrange
         Card input = new Card().setColor(Card.Color.BLUE).setValue(Card.Value.THREE);
         boolean expected = true;
@@ -60,7 +59,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.ONE));
 
-        boolean answer = gameService.allowedMove(new Player(), input);
+        boolean answer = gameService.legalMove(new Player(), input);
         // assert
         assertEquals(expected, answer);
     }

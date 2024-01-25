@@ -24,14 +24,14 @@ public class GameService {
      // check for special rules (draw, colorchoose, skip,...)
     }
 
-    public boolean allowedMove(Player player, Card card)
+    public boolean legalMove(Player player, Card card)
     {
-        boolean isAllowed = false;
+        boolean legalMoveFound = false;
         Card lastCard = game.getLastPlayedCard();
         // rules:
-        if (card.getColor() == lastCard.getColor()) isAllowed = true; // same color
+        if (card.getColor() == lastCard.getColor()) legalMoveFound = true; // same color
 
-        return isAllowed;
+        return legalMoveFound;
     }
 
 }
