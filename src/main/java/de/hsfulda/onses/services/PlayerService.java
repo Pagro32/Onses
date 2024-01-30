@@ -15,4 +15,13 @@ public class PlayerService {
         playerList.add(player);
     }
 
+
+    // button on gui activates it
+    public void addOpponents(int amount) {
+        for (int i=0; i<amount; i++)
+        {
+            playerList.add(new Player());
+        }
+    }
+
 }
