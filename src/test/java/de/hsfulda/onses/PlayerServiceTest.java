@@ -45,4 +45,19 @@ public class PlayerServiceTest {
         assertEquals(expected2, answer2);
     }
 
+    @Test
+    @DisplayName("addPlayerToPlayerList")
+    void addAmountOfOpponents()
+    {
+        //arrange
+        int input = 3;
+        int expected = 3;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.addOpponents(input);
+        int answer = playerservice.getPlayerList().size();
+        // assert
+        assertEquals(expected, answer);
+    }
+
 }
