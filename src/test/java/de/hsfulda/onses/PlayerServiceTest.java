@@ -24,5 +24,25 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("addMultiplePlayerToPlayerList")
+    void addMultiplePlayerToPlayerList()
+    {
+        //arrange
+        Player input1 = new Player();
+        Player expected1 = input1;
+        Player input2 = new Player();
+        Player expected2 = input2;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.addPlayerToList(input1);
+        playerservice.addPlayerToList(input2);
+
+        Player answer1 = playerservice.getPlayerList().getFirst();
+        Player answer2 = playerservice.getPlayerList().get(1);
+        // assert
+        assertEquals(expected1, answer1);
+        assertEquals(expected2, answer2);
+    }
 
 }
