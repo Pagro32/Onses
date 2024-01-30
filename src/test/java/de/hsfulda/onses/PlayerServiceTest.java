@@ -75,4 +75,38 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("currentTurnsSwitching")
+    void currentTurnsSwitching4Players() {
+        // arrange
+        int expected = 2;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.addPlayerToList(new Player());
+        playerservice.addOpponents(3);
+
+        for (int i=0; i < expected; i++){ playerservice.nextTurn(); }
+
+        int answer = playerservice.getCurrentTurn();
+        // assert
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("currentTurnsResettingAfterAfterTotalTurns")
+    void currentTurnsResettingAfterTotalTurns() {
+        // arrange
+        int expected = 0;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.addPlayerToList(new Player());
+        playerservice.addOpponents(3);
+        int totalTurns = playerservice.getTotalTurns();
+
+        for (int i=0; i < totalTurns; i++){ playerservice.nextTurn(); }
+
+        int answer = playerservice.getCurrentTurn();
+        // assert
+        assertEquals(expected, answer);
+    }
 }
