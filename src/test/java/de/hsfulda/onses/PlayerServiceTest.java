@@ -54,8 +54,12 @@ public class PlayerServiceTest {
         int expected = 3;
         // act
         PlayerService playerservice = new PlayerService();
+        int before = playerservice.getPlayerList().size();
+
         playerservice.addOpponents(input);
-        int answer = playerservice.getPlayerList().size();
+
+        int after = playerservice.getPlayerList().size();
+        int answer = after - before;
         // assert
         assertEquals(expected, answer);
     }
