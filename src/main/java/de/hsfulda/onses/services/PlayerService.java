@@ -22,7 +22,7 @@ public class PlayerService {
     public void addOpponents(int amount) {
         for (int i=0; i<amount; i++)
         {
-            playerList.add(new Player());
+            addPlayerToList(new Player());
         }
     }
 

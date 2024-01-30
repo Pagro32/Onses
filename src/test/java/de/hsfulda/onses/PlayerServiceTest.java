@@ -46,7 +46,7 @@ public class PlayerServiceTest {
     }
 
     @Test
-    @DisplayName("addPlayerToPlayerList")
+    @DisplayName("addAmountOfOpponents")
     void addAmountOfOpponents()
     {
         //arrange
