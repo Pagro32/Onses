@@ -12,8 +12,7 @@ public class PlayerServiceTest {
 
     @Test
     @DisplayName("addPlayerToPlayerList")
-    void addPlayerToPlayerList()
-    {
+    void addPlayerToPlayerList() {
         //arrange
         Player input = new Player();
         Player expected = input;
@@ -24,10 +23,10 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("addMultiplePlayerToPlayerList")
-    void addMultiplePlayerToPlayerList()
-    {
+    void addMultiplePlayerToPlayerList() {
         //arrange
         Player input1 = new Player();
         Player expected1 = input1;
@@ -47,8 +46,7 @@ public class PlayerServiceTest {
 
     @Test
     @DisplayName("addAmountOfOpponents")
-    void addAmountOfOpponents()
-    {
+    void addAmountOfOpponents() {
         //arrange
         int input = 3;
         int expected = 3;
@@ -64,4 +62,17 @@ public class PlayerServiceTest {
         assertEquals(expected, answer);
     }
 
+    @Test
+    @DisplayName("TotalTurnsEqualsAmountPlayers")
+    void totalTurnsEqualsAmountPlayers() {
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.addPlayerToList(new Player());
+        playerservice.addOpponents(3);
+
+        int expected = playerservice.getPlayerList().size();
+        int answer = playerservice.getTotalTurns();
+        // assert
+        assertEquals(expected, answer);
+    }
 }
