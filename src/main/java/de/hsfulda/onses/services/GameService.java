@@ -52,4 +52,8 @@ public class GameService {
         }
     }
 
+    public void shuffleDeck() {
+        Collections.shuffle(game.getDrawCardDeck());
+    }
+
 }
