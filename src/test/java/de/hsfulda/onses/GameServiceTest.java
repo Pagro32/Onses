@@ -88,12 +88,12 @@ public class GameServiceTest {
 
         int counter = 0;
 
-        for (int i = 0; i < 112; i++) {
+        for (int i = 0; i < notshuffled.getGame().getDrawCardDeck().size(); i++) {
             if (shuffled.getGame().getDrawCardDeck().get(i).getValue() == notshuffled.getGame().getDrawCardDeck().get(i).getValue() &&
                     shuffled.getGame().getDrawCardDeck().get(i).getColor() == notshuffled.getGame().getDrawCardDeck().get(i).getColor()) {
                 counter ++;
             }
-            if (counter == 112) {
+            if (counter == notshuffled.getGame().getDrawCardDeck().size()) {
                 fail("Deck wurde nicht richtig gemischt");
             }
         }
