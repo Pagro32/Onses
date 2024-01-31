@@ -31,6 +31,8 @@ public class GameService {
         // rules:
         if (card.getColor() == lastCard.getColor()) legalMoveFound = true; // same color
 
+        if (card.getValue() == lastCard.getValue()) legalMoveFound = true; // same value
+
         return legalMoveFound;
     }
 
