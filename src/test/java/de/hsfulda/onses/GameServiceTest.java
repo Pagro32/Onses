@@ -75,4 +75,22 @@ public class GameServiceTest {
 
         assertEquals(expected, answer);
     }
+
+    @Test
+    @DisplayName("ShuffelDeck")
+    public void ShuffelDeck() {
+        GameService shuffled = new GameService();
+        GameService notshuffled = new GameService();
+
+        shuffled.fillDrawDeck();
+        notshuffled.fillDrawDeck();
+        shuffled.shuffleDeck();
+
+        for (int i = 0; i < 10; i++) {
+            if (shuffled.getGame().getDrawCardDeck().get(i).getValue() == notshuffled.getGame().getDrawCardDeck().get(i).getValue() &&
+                    shuffled.getGame().getDrawCardDeck().get(i).getColor() == notshuffled.getGame().getDrawCardDeck().get(i).getColor()) {
+                fail("Deck wurde nicht richtig gemischt");
+            }
+        }
+    }
 }
