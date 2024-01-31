@@ -79,4 +79,19 @@ public class GameServiceTest {
         assertEquals(expected, answer);
     }
 
+    @Test
+    @DisplayName("legalMoveSameValueThree")
+    public void legalMoveSameValueThree() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.THREE);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
+
+        boolean answer = gameService.legalMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+
 }
