@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import de.hsfulda.onses.models.Game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,5 +64,15 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("FillDrawCardDeck")
+    public  void FillDrawCardDeck() {
+        GameService gameService = new GameService();
+        int expected = 112;
 
+        gameService.fillDrawDeck();
+        int answer = gameService.getGame().getDrawCardDeck().size();
+
+        assertEquals(expected, answer);
+    }
 }
