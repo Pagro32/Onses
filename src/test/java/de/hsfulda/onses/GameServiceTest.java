@@ -68,7 +68,7 @@ public class GameServiceTest {
     @DisplayName("FillDrawCardDeck")
     public  void FillDrawCardDeck() {
         GameService gameService = new GameService();
-        int expected = 112;
+        int expected = gameService.getGame().getDrawCardDeck().size() + 112;
 
         gameService.fillDrawDeck();
         int answer = gameService.getGame().getDrawCardDeck().size();

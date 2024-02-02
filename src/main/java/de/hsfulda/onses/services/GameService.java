@@ -11,6 +11,8 @@ public class GameService {
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
+        fillDrawDeck();
+        shuffleDeck();
     }
     public GameService() {
         this(new Game());
