@@ -209,4 +209,22 @@ public class GameServiceTest {
         assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
     }
 
+    @Test
+    @DisplayName("ChooseTest")
+    public void ChooseTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = true;
+        boolean answer = false;
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.CHOOSE).setColor(Card.Color.BLACK));
+
+        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+            answer = true;
+        }
+
+        assertEquals(expected, answer);
+
+    }
+
 }
