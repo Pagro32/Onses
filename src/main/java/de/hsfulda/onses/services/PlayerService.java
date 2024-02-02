@@ -1,11 +1,13 @@
 package de.hsfulda.onses.services;
 
+import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
 
 import java.util.ArrayList;
 
 public class PlayerService {
 
+    private Game game;
     private boolean currentTurn = true; // true --> real player, false --> Bot
 
     private final ArrayList<Player> playerList = new ArrayList<>();
@@ -31,4 +33,12 @@ public class PlayerService {
         return this;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public PlayerService setGame(Game game) {
+        this.game = game;
+        return this;
+    }
 }
