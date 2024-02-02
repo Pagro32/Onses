@@ -46,7 +46,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }
@@ -60,7 +60,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.ONE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }
@@ -86,7 +86,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.ONE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }
@@ -101,7 +101,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }
@@ -116,7 +116,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }
@@ -131,7 +131,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FIVE));
 
-        boolean answer = gameService.legalMove(new Player(), input);
+        boolean answer = gameService.legalMove(input);
         // assert
         assertEquals(expected, answer);
     }

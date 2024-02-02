@@ -76,7 +76,7 @@ public class GameService {
         }
     }
 
-    public boolean legalMove(Player player, Card card)
+    public boolean legalMove(Card card)
     {
         boolean legalMoveFound = false;
         Card lastCard = game.getLastPlayedCard();
