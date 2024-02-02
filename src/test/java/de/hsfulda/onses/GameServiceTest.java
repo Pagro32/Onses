@@ -185,4 +185,16 @@ public class GameServiceTest {
         assertEquals(expected, answer2);
     }
 
+    @Test
+    @DisplayName("SkipTest")
+    public void SkipTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.SKIP).setColor(Card.Color.BLACK));
+
+        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+    }
+
 }
