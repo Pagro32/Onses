@@ -78,4 +78,16 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("RelationShip_Player_PlayerService")
+    void Relationship_Player_PlayerService() {
+        // arrange
+        PlayerService expected = new PlayerService();
+        // act
+        PlayerService answer1 = expected.getPlayerList().getFirst().getPlayerService();
+        PlayerService answer2 = expected.getPlayerList().getLast().getPlayerService();
+        // assert
+        assertEquals(expected, answer1);
+        assertEquals(expected, answer2);
+    }
 }
