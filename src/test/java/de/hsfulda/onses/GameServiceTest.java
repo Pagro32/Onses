@@ -245,4 +245,18 @@ public class GameServiceTest {
 
     }
 
+    @Test
+    @DisplayName("DrawCardDeckTest")
+    public void DrawCardDeckTest ()
+    {
+        GameService gameService = new GameService();
+        int before = gameService.getGame().getDrawCardDeck().size();
+        gameService.drawCard(4);
+        int after = gameService.getGame().getDrawCardDeck().size();
+
+        int expected = 4;
+        int answer = before - after;
+        assertEquals(expected, answer);
+    }
+
 }
