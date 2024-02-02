@@ -25,6 +25,11 @@ public class GameService {
      // add lastPlayedCard back to drawCardDeck
          game.setLastPlayedCard(card);
      // check for special rules (draw, colorchoose, skip,...)
+        // Skip
+        if (card.getValue() == Card.Value.SKIP) {
+            game.getPlayerService().nextTurn();
+            game.getPlayerService().nextTurn();
+        }
     }
 
     public boolean legalMove(Player player, Card card)
