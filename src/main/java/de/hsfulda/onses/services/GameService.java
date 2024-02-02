@@ -23,6 +23,9 @@ public class GameService {
     public void nextPlayer() {
         game.getPlayerService().nextTurn();
     }
+    public void drawCard(int amount) {
+
+    }
     public void playCard(Player player, Card card)
     {
      // add lastPlayedCard back to drawCardDeck
@@ -43,6 +46,12 @@ public class GameService {
             // Abfrage Farbe
             Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
             game.changeLastPlayedCardColor(color);
+        }
+        // Draw
+        if (card.getValue() == Card.Value.DRAWTWO) {
+            nextPlayer();
+            drawCard(2);
+            nextPlayer();
         }
     }
 
