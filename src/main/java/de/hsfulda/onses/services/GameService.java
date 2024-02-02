@@ -46,11 +46,21 @@ public class GameService {
             // Abfrage Farbe
             Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
             game.changeLastPlayedCardColor(color);
+            nextPlayer();
         }
         // Draw
         if (card.getValue() == Card.Value.DRAWTWO) {
             nextPlayer();
             drawCard(2);
+            nextPlayer();
+        }
+        // ChooseDraw
+        if (card.getValue() == Card.Value.CHOOSEDRAW) {
+            // Abfrage Farbe
+            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+            game.changeLastPlayedCardColor(color);
+            nextPlayer();
+            drawCard(4);
             nextPlayer();
         }
     }
