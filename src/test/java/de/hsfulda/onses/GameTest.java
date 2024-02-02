@@ -46,4 +46,14 @@ public class GameTest {
         assertEquals(game.getDrawCardDeck().getFirst(), answer1);
         assertEquals(game.getDrawCardDeck().get(1), answer2);
     }
+    @Test
+    @DisplayName("RelationshipGame_PlayerService")
+    public void RelationshipGame_PlayerService() {
+        // arrange
+        Game expected = new Game();
+        // act
+        Game answer = expected.getPlayerService().getGame();
+        // assert
+        assertEquals(expected, answer);
+    }
 }
