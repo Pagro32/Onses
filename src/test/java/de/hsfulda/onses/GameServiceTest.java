@@ -77,6 +77,65 @@ public class GameServiceTest {
     }
 
     @Test
+    @DisplayName("legalMoveSameValueOne")
+    public void legalMoveSameValueOne() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.ONE));
+
+        boolean answer = gameService.legalMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("legalMoveSameValueThree")
+    public void legalMoveSameValueThree() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.THREE);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
+
+        boolean answer = gameService.legalMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("legalMoveColorBlack")
+    public void legalMoveColorBlack() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
+
+        boolean answer = gameService.legalMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("legalMoveColorBlackCHOOSEDRAW")
+    public void legalMoveColorBlackCHOOSEDRAW() {
+        // arrange
+        Card input = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSEDRAW);
+        boolean expected = true;
+        // act
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FIVE));
+
+        boolean answer = gameService.legalMove(new Player(), input);
+        // assert
+        assertEquals(expected, answer);
+    }
+    @Test
     @DisplayName("ShuffelDeck")
     public void ShuffelDeck() {
         GameService shuffled = new GameService();

@@ -33,6 +33,10 @@ public class GameService {
         // rules:
         if (card.getColor() == lastCard.getColor()) legalMoveFound = true; // same color
 
+        if (card.getValue() == lastCard.getValue()) legalMoveFound = true; // same value
+
+        if (card.getColor() == Card.Color.BLACK) legalMoveFound = true; // Color Black
+
         return legalMoveFound;
     }
 
