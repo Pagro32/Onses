@@ -197,4 +197,16 @@ public class GameServiceTest {
         assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
     }
 
+    @Test
+    @DisplayName("ReverseTest")
+    public void ReverseTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.REVERSE).setColor(Card.Color.BLACK));
+
+        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+    }
+
 }
