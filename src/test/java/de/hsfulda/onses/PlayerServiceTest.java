@@ -43,4 +43,31 @@ public class PlayerServiceTest {
         assertEquals(expected1, answer1);
         assertEquals(expected2, answer2);
     }
+    @Test
+    @DisplayName("checkCurrentTurnAfterNextTurn")
+    void checkCurrentTurnAfterNextTurn() {
+        //arrange
+        boolean expected = true;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.setCurrentTurn(false);
+        playerservice.nextTurn();
+        boolean answer = playerservice.getCurrentTurn();
+        // assert
+        assertEquals(expected, answer);
+    }
+    @Test
+    @DisplayName("checkCurrentTurnAfterTwoTurns")
+    void checkCurrentTurnAfterTwoTurns() {
+        //arrange
+        boolean expected = false;
+        // act
+        PlayerService playerservice = new PlayerService();
+        playerservice.setCurrentTurn(false);
+        playerservice.nextTurn();
+        playerservice.nextTurn();
+        boolean answer = playerservice.getCurrentTurn();
+        // assert
+        assertEquals(expected, answer);
+    }
 }
