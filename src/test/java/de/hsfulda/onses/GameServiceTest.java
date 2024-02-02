@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import de.hsfulda.onses.models.Game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,5 +64,38 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("FillDrawCardDeck")
+    public  void FillDrawCardDeck() {
+        GameService gameService = new GameService();
+        int expected = 112;
 
+        gameService.fillDrawDeck();
+        int answer = gameService.getGame().getDrawCardDeck().size();
+
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("ShuffelDeck")
+    public void ShuffelDeck() {
+        GameService shuffled = new GameService();
+        GameService notshuffled = new GameService();
+
+        shuffled.fillDrawDeck();
+        notshuffled.fillDrawDeck();
+        shuffled.shuffleDeck();
+
+        int counter = 0;
+
+        for (int i = 0; i < notshuffled.getGame().getDrawCardDeck().size(); i++) {
+            if (shuffled.getGame().getDrawCardDeck().get(i).getValue() == notshuffled.getGame().getDrawCardDeck().get(i).getValue() &&
+                    shuffled.getGame().getDrawCardDeck().get(i).getColor() == notshuffled.getGame().getDrawCardDeck().get(i).getColor()) {
+                counter ++;
+            }
+            if (counter == notshuffled.getGame().getDrawCardDeck().size()) {
+                fail("Deck wurde nicht richtig gemischt");
+            }
+        }
+    }
 }
