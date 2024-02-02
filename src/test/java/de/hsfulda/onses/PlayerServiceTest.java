@@ -15,11 +15,15 @@ public class PlayerServiceTest {
     void addPlayerToPlayerList() {
         //arrange
         Player input = new Player();
-        Player expected = input;
+        boolean expected = true;
+        boolean answer = false;
         // act
         PlayerService playerservice = new PlayerService();
         playerservice.addPlayerToList(input);
-        Player answer = playerservice.getPlayerList().getFirst();
+        for (Player i : playerservice.getPlayerList())
+        {
+            if (i == input) {answer = true; break;}
+        }
         // assert
         assertEquals(expected, answer);
     }
@@ -28,20 +32,24 @@ public class PlayerServiceTest {
     @DisplayName("addMultiplePlayerToPlayerList")
     void addMultiplePlayerToPlayerList() {
         //arrange
+        boolean expected = true;
         Player input1 = new Player();
-        Player expected1 = input1;
+        boolean answer1 = false;
         Player input2 = new Player();
-        Player expected2 = input2;
+        boolean answer2 = false;
         // act
         PlayerService playerservice = new PlayerService();
         playerservice.addPlayerToList(input1);
         playerservice.addPlayerToList(input2);
 
-        Player answer1 = playerservice.getPlayerList().getFirst();
-        Player answer2 = playerservice.getPlayerList().get(1);
+        for (Player i : playerservice.getPlayerList())
+        {
+            if (i == input1) {answer1 = true;}
+            if (i == input2) {answer2 = true;}
+        }
         // assert
-        assertEquals(expected1, answer1);
-        assertEquals(expected2, answer2);
+        assertEquals(expected, answer1);
+        assertEquals(expected, answer2);
     }
     @Test
     @DisplayName("checkCurrentTurnAfterNextTurn")
@@ -69,5 +77,17 @@ public class PlayerServiceTest {
         boolean answer = playerservice.getCurrentTurn();
         // assert
         assertEquals(expected, answer);
+    }
+    @Test
+    @DisplayName("RelationShip_Player_PlayerService")
+    void Relationship_Player_PlayerService() {
+        // arrange
+        PlayerService expected = new PlayerService();
+        // act
+        PlayerService answer1 = expected.getPlayerList().getFirst().getPlayerService();
+        PlayerService answer2 = expected.getPlayerList().getLast().getPlayerService();
+        // assert
+        assertEquals(expected, answer1);
+        assertEquals(expected, answer2);
     }
 }

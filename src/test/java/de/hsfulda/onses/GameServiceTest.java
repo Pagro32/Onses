@@ -157,4 +157,32 @@ public class GameServiceTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("RelationshipGameService_Game")
+    public void RelationshipGameService_Game()
+    {
+        // arrange
+        GameService expected = new GameService();
+        //act
+        GameService answer = expected.getGame().getGameService();
+        // assert
+        assertEquals(expected, answer);
+    }
+    @Test
+    @DisplayName("allRelationsTest")
+    public void allRelationsTest ()
+    {
+        // arrange
+        GameService expected = new GameService();
+        //act
+        Player input1 = expected.getGame().getPlayerService().getPlayerList().getFirst();
+        Player input2 = expected.getGame().getPlayerService().getPlayerList().getLast();
+        GameService answer1 = input1.getPlayerService().getGame().getGameService();
+        GameService answer2 = input2.getGame().getGameService();
+        // assert
+        assertEquals(expected, answer1);
+        assertEquals(expected, answer2);
+    }
+
 }

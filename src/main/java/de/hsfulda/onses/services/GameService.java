@@ -10,6 +10,7 @@ public class GameService {
     private final Game game;
     public GameService(Game game) {
         this.game = game;
+        this.game.setGameService(this);
     }
     public GameService() {
         this(new Game());
