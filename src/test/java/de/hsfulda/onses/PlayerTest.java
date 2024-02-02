@@ -1,6 +1,8 @@
 
 package de.hsfulda.onses;
 
+import de.hsfulda.onses.models.Game;
+import de.hsfulda.onses.services.PlayerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,5 +44,18 @@ public class PlayerTest {
         // assert
         assertEquals(testCard1, firstCardPlayerDeck);
         assertEquals(testCard2, secondCardPlayerDeck);
+    }
+    @Test
+    @DisplayName("Relationship_Player_Game")
+    void Relationship_Player_Game() {
+        // arrange
+        PlayerService input = new PlayerService();
+        Game expected = input.getGame();
+        // act
+        Game answer1 = input.getPlayerList().getFirst().getPlayerService().getGame();
+        Game answer2 = input.getPlayerList().getLast().getPlayerService().getGame();
+        // assert
+        assertEquals(expected, answer1);
+        assertEquals(expected, answer2);
     }
 }
