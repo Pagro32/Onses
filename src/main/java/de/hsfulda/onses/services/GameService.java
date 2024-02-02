@@ -11,6 +11,8 @@ public class GameService {
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
+        fillDrawDeck();
+        shuffleDeck();
     }
     public GameService() {
         this(new Game());
@@ -20,11 +22,58 @@ public class GameService {
         return game;
     }
 
+    public void nextPlayer() {
+        game.getPlayerService().nextTurn();
+    }
+    public void drawCard(int amount) {
+        Player player = null;
+        if (game.getPlayerService().getCurrentTurn()) {
+            player = game.getPlayerService().getPlayerList().getFirst();
+        } else {
+            player = game.getPlayerService().getPlayerList().getLast();
+        }
+        for (int i = 0; i < amount; i++) {
+           player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
+           game.getDrawCardDeck().removeFirst();
+        }
+    }
     public void playCard(Player player, Card card)
     {
      // add lastPlayedCard back to drawCardDeck
          game.setLastPlayedCard(card);
      // check for special rules (draw, colorchoose, skip,...)
+        // Skip
+        if (card.getValue() == Card.Value.SKIP) {
+            nextPlayer();
+            nextPlayer();
+        }
+        // Reverse
+        if (card.getValue() == Card.Value.REVERSE) {
+            nextPlayer();
+            nextPlayer();
+        }
+        // Choose
+        if (card.getValue() == Card.Value.CHOOSE) {
+            // Abfrage Farbe
+            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+            game.changeLastPlayedCardColor(color);
+            nextPlayer();
+        }
+        // Draw
+        if (card.getValue() == Card.Value.DRAWTWO) {
+            nextPlayer();
+            drawCard(2);
+            nextPlayer();
+        }
+        // ChooseDraw
+        if (card.getValue() == Card.Value.CHOOSEDRAW) {
+            // Abfrage Farbe
+            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+            game.changeLastPlayedCardColor(color);
+            nextPlayer();
+            drawCard(4);
+            nextPlayer();
+        }
     }
 
     public boolean legalMove(Player player, Card card)

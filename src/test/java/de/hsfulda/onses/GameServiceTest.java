@@ -68,7 +68,7 @@ public class GameServiceTest {
     @DisplayName("FillDrawCardDeck")
     public  void FillDrawCardDeck() {
         GameService gameService = new GameService();
-        int expected = 112;
+        int expected = gameService.getGame().getDrawCardDeck().size() + 112;
 
         gameService.fillDrawDeck();
         int answer = gameService.getGame().getDrawCardDeck().size();
@@ -183,6 +183,98 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer1);
         assertEquals(expected, answer2);
+    }
+
+    @Test
+    @DisplayName("SkipTest")
+    public void SkipTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.SKIP).setColor(Card.Color.BLACK));
+
+        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+    }
+
+    @Test
+    @DisplayName("ReverseTest")
+    public void ReverseTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.REVERSE).setColor(Card.Color.BLACK));
+
+        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+    }
+
+    @Test
+    @DisplayName("ChooseTest")
+    public void ChooseTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = true;
+        boolean answer = false;
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.CHOOSE).setColor(Card.Color.BLACK));
+
+        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+            answer = true;
+        }
+
+        assertEquals(expected, answer);
+
+    }
+
+    @Test
+    @DisplayName("ChooseDrawTest")
+    public void ChooseDrawTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = true;
+        boolean answer = false;
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.CHOOSEDRAW).setColor(Card.Color.BLACK));
+
+        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+            answer = true;
+        }
+
+        assertEquals(expected, answer);
+
+    }
+
+    @Test
+    @DisplayName("DrawCardDeckTest")
+    public void DrawCardDeckTest ()
+    {
+        GameService gameService = new GameService();
+        int before = gameService.getGame().getDrawCardDeck().size();
+        gameService.drawCard(4);
+        int after = gameService.getGame().getDrawCardDeck().size();
+
+        int expected = 4;
+        int answer = before - after;
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("DrawCardDeckRemoveTest")
+    public void DrawCardDeckRemoveTest ()
+    {
+        GameService gameService = new GameService();
+        Card card = gameService.getGame().getDrawCardDeck().getFirst();
+        gameService.drawCard(1);
+        int counter = 0;
+        int expected = 0;
+        for (int i = 0; i < gameService.getGame().getDrawCardDeck().size(); i++) {
+            if (gameService.getGame().getDrawCardDeck().get(i).getColor() == card.getColor() && gameService.getGame().getDrawCardDeck().get(i).getValue() == card.getValue()) counter++;
+        }
+        if (card.getColor() == Card.Color.BLACK) expected = 3;
+        else expected = 1;
+
+        assertEquals(expected, counter);
     }
 
 }

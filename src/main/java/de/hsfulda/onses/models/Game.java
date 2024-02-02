@@ -18,6 +18,9 @@ public class Game {
         return lastPlayedCard;
     }
 
+    public void changeLastPlayedCardColor(Card.Color color) {
+        lastPlayedCard.setColor(color);
+    }
     public Game setLastPlayedCard(Card lastPlayedCard) {
         this.lastPlayedCard = lastPlayedCard;
         return this;
