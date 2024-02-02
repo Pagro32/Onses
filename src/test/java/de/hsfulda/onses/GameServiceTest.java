@@ -157,4 +157,16 @@ public class GameServiceTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("RelationshipGameService_Game")
+    public void RelationshipGameService_Game()
+    {
+        // arrange
+        GameService expected = new GameService();
+        //act
+        GameService answer = expected.getGame().getGameService();
+        // assert
+        assertEquals(expected, answer);
+    }
 }
