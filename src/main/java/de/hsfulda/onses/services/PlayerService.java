@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class PlayerService {
 
-    private int currentTurn = 0; // 0-3
-    private int totalTurns = 0; // 1-4
+    private boolean currentTurn = true; // true --> real player, false --> Bot
+    private int totalTurns = 0;
     private final ArrayList<Player> playerList = new ArrayList<>();
 
     public ArrayList<Player> getPlayerList() {
@@ -19,22 +19,18 @@ public class PlayerService {
     }
 
 
-    // decides which Player is currently at their turn -> 0 = main Player (skip -> 2x nextTurn())
-    // possible: at start of game random int generator from 0-max to decide who starts first
-    // currentTurn = 2 --> player.getPlayerList(currentTurn) --> Bot 2 (Player 3)
     public void nextTurn()
     {
-        if (currentTurn != totalTurns-1) currentTurn++;
-        else currentTurn = 0;
+        currentTurn = !currentTurn;
     }
 
 
 
-    public int getCurrentTurn() {
+    public boolean getCurrentTurn() {
         return currentTurn;
     }
 
-    public PlayerService setCurrentTurn(int currentTurn) {
+    public PlayerService setCurrentTurn(boolean currentTurn) {
         this.currentTurn = currentTurn;
         return this;
     }
