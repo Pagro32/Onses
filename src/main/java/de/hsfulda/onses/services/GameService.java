@@ -20,6 +20,9 @@ public class GameService {
         return game;
     }
 
+    public void nextPlayer() {
+        game.getPlayerService().nextTurn();
+    }
     public void playCard(Player player, Card card)
     {
      // add lastPlayedCard back to drawCardDeck
@@ -27,8 +30,8 @@ public class GameService {
      // check for special rules (draw, colorchoose, skip,...)
         // Skip
         if (card.getValue() == Card.Value.SKIP) {
-            game.getPlayerService().nextTurn();
-            game.getPlayerService().nextTurn();
+            nextPlayer();
+            nextPlayer();
         }
     }
 
