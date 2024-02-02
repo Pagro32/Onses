@@ -40,7 +40,7 @@ public class GameService {
             nextPlayer();
         }
     }
-    public void playCard(Player player, Card card)
+    public void playCard(Card card)
     {
      // add lastPlayedCard back to drawCardDeck
          game.setLastPlayedCard(card);
