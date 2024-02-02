@@ -33,6 +33,11 @@ public class GameService {
             nextPlayer();
             nextPlayer();
         }
+        // Reverse
+        if (card.getValue() == Card.Value.REVERSE) {
+            nextPlayer();
+            nextPlayer();
+        }
     }
 
     public boolean legalMove(Player player, Card card)
