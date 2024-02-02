@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Player {
 
     private PlayerService playerService;
+    private Game game;
     private final ArrayList<Card> playerDeck = new ArrayList<>();
 
     public ArrayList<Card> getPlayerDeck() {
@@ -25,6 +26,15 @@ public class Player {
 
     public Player setPlayerService(PlayerService playerService) {
         this.playerService = playerService;
+        return this;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Player setGame(Game game) {
+        this.game = game;
         return this;
     }
 }

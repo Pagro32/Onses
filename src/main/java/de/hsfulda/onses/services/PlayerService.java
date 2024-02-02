@@ -44,7 +44,7 @@ public class PlayerService {
 
     public PlayerService()
     {
-        addPlayerToList(new Player().setPlayerService(this));
-        addPlayerToList(new Player().setPlayerService(this));
+        addPlayerToList(new Player().setPlayerService(this).setGame(this.game));
+        addPlayerToList(new Player().setPlayerService(this).setGame(this.game));
     }
 }
