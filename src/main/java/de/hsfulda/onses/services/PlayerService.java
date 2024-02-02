@@ -18,13 +18,6 @@ public class PlayerService {
         totalTurns++;
     }
 
-    // button on gui activates it
-    public void addOpponents(int amount) {
-        for (int i=0; i<amount; i++)
-        {
-            addPlayerToList(new Player());
-        }
-    }
 
     // decides which Player is currently at their turn -> 0 = main Player (skip -> 2x nextTurn())
     // possible: at start of game random int generator from 0-max to decide who starts first
