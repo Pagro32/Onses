@@ -227,4 +227,22 @@ public class GameServiceTest {
 
     }
 
+    @Test
+    @DisplayName("ChooseDrawTest")
+    public void ChooseDrawTest ()
+    {
+        GameService gameservice = new GameService();
+        boolean expected = true;
+        boolean answer = false;
+
+        gameservice.playCard(new Player(), new Card().setValue(Card.Value.CHOOSEDRAW).setColor(Card.Color.BLACK));
+
+        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+            answer = true;
+        }
+
+        assertEquals(expected, answer);
+
+    }
+
 }
