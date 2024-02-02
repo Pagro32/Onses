@@ -28,9 +28,8 @@ public class PlayerService {
         return currentTurn;
     }
 
-    public PlayerService setCurrentTurn(boolean currentTurn) {
+    public void setCurrentTurn(boolean currentTurn) {
         this.currentTurn = currentTurn;
-        return this;
     }
 
     public Game getGame() {
