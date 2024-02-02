@@ -41,4 +41,10 @@ public class PlayerService {
         this.game = game;
         return this;
     }
+
+    public PlayerService()
+    {
+        addPlayerToList(new Player().setPlayerService(this));
+        addPlayerToList(new Player().setPlayerService(this));
+    }
 }
