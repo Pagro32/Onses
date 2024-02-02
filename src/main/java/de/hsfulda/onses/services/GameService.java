@@ -38,6 +38,12 @@ public class GameService {
             nextPlayer();
             nextPlayer();
         }
+        // Choose
+        if (card.getValue() == Card.Value.CHOOSE) {
+            // Abfrage Farbe
+            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+            game.changeLastPlayedCardColor(color);
+        }
     }
 
     public boolean legalMove(Player player, Card card)
