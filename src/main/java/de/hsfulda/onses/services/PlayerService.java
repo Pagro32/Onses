@@ -39,12 +39,14 @@ public class PlayerService {
 
     public PlayerService setGame(Game game) {
         this.game = game;
+        playerList.getFirst().setGame(this.game);
+        playerList.getLast().setGame(this.game);
         return this;
     }
 
     public PlayerService()
     {
-        addPlayerToList(new Player().setPlayerService(this).setGame(this.game));
-        addPlayerToList(new Player().setPlayerService(this).setGame(this.game));
+        addPlayerToList(new Player().setPlayerService(this));
+        addPlayerToList(new Player().setPlayerService(this));
     }
 }
