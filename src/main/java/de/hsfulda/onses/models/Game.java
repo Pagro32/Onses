@@ -1,8 +1,13 @@
 package de.hsfulda.onses.models;
 
+import de.hsfulda.onses.services.GameService;
+
 import java.util.ArrayList;
 
 public class Game {
+
+    private GameService gameService;
+
     private final ArrayList<Card> drawCardDeck = new ArrayList<>();
 
     private Card lastPlayedCard = null;
@@ -24,4 +29,12 @@ public class Game {
         drawCardDeck.add(card);
     }
 
+    public GameService getGameService() {
+        return gameService;
+    }
+
+    public Game setGameService(GameService gameService) {
+        this.gameService = gameService;
+        return this;
+    }
 }
