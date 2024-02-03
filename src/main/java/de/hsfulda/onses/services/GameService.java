@@ -53,6 +53,12 @@ public class GameService {
         game.addCardToDrawCardDeck(lastCard);
     }
 
+    public void changeColor() {
+        // Abfrage Farbe
+        Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+        game.changeLastPlayedCardColor(color);
+    }
+
     public void playCard(Card card) {
         // add lastPlayedCard back to drawCardDeck
         this.addLastPlayedCardToDrawCardDeck();
@@ -70,15 +76,11 @@ public class GameService {
                 nextPlayer();
                 break;
             case CHOOSE:
-                // Abfrage Farbe
-                Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
-                game.changeLastPlayedCardColor(color);
+                changeColor();
                 nextPlayer();
                 break;
             case CHOOSEDRAW:
-                // Abfrage Farbe
-                Card.Color color1 = Card.Color.BLUE; //Vorübergehend Blau
-                game.changeLastPlayedCardColor(color1);
+                changeColor();
                 nextPlayer();
                 drawCard(4);
                 break;
