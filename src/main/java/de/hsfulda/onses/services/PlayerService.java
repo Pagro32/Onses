@@ -63,7 +63,8 @@ public class PlayerService {
     public void botMove() {
         for (int i = 0; i < this.playerList.getLast().getPlayerDeck().size(); i++) {
             if (getGame().getGameService().legalMove(this.playerList.getLast().getPlayerDeck().get(i))) {
-                //do something...
+                this.removeCardFromPlayerDeck(this.playerList.getLast().getPlayerDeck().get(i));
+                break;
             }
         }
     }
