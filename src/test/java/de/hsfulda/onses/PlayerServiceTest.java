@@ -3,6 +3,7 @@ package de.hsfulda.onses;
 
 import com.sun.tools.jconsole.JConsoleContext;
 import de.hsfulda.onses.models.Card;
+import de.hsfulda.onses.services.GameService;
 import de.hsfulda.onses.services.PlayerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -107,6 +108,27 @@ public class PlayerServiceTest {
 
         playerService.removeCardFromPlayerDeck(card1);
         int after = playerService.getPlayerList().getFirst().getPlayerDeck().size();
+
+        assertEquals(before - 1, after);
+    }
+
+    @Test
+    @DisplayName("CheckCardRemovalFromBotDeck")
+    void CheckCardRemovalFromBotDeck() {
+        GameService gameService = new GameService();
+
+        Card card1 = new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.TWO);
+        Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card1);
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card2);
+        int before = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
+
+        gameService.getGame().getPlayerService().botMove();
+        int after = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
 
         assertEquals(before - 1, after);
     }
