@@ -52,13 +52,17 @@ public class GameService {
         }
     }
 
-    public void playCard(Card card) {
-        // add lastPlayedCard back to drawCardDeck
+    public void addLastPlayedCardToDrawCardDeck() {
         Card lastCard = game.getLastPlayedCard();
         if (lastCard.getValue() == Card.Value.CHOOSE || lastCard.getValue() == Card.Value.CHOOSEDRAW) {
             lastCard.setColor(Card.Color.BLACK);
         }
         game.addCardToDrawCardDeck(lastCard);
+    }
+
+    public void playCard(Card card) {
+        // add lastPlayedCard back to drawCardDeck
+        this.addLastPlayedCardToDrawCardDeck();
         game.setLastPlayedCard(card);
         // check for special rules (draw, colorchoose, skip,...)
         // Skip

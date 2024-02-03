@@ -3,6 +3,7 @@ package de.hsfulda.onses;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import de.hsfulda.onses.models.Card;
@@ -22,6 +23,7 @@ public class GameServiceTest {
         // assert
         assertEquals(input, answer);
     }
+
     @Test
     @DisplayName("playCardBlackChoose")
     public void playCardBlackChoose() {
@@ -49,6 +51,7 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("legalMoveSameColorBlue")
     public void legalMoveSameColorBlue() {
@@ -63,9 +66,10 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("FillDrawCardDeck")
-    public  void FillDrawCardDeck() {
+    public void FillDrawCardDeck() {
         GameService gameService = new GameService();
         int expected = gameService.getGame().getDrawCardDeck().size() + 112;
 
@@ -134,6 +138,7 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("ShuffelDeck")
     public void ShuffelDeck() {
@@ -149,7 +154,7 @@ public class GameServiceTest {
         for (int i = 0; i < notshuffled.getGame().getDrawCardDeck().size(); i++) {
             if (shuffled.getGame().getDrawCardDeck().get(i).getValue() == notshuffled.getGame().getDrawCardDeck().get(i).getValue() &&
                     shuffled.getGame().getDrawCardDeck().get(i).getColor() == notshuffled.getGame().getDrawCardDeck().get(i).getColor()) {
-                counter ++;
+                counter++;
             }
             if (counter == notshuffled.getGame().getDrawCardDeck().size()) {
                 fail("Deck wurde nicht richtig gemischt");
@@ -159,8 +164,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("RelationshipGameService_Game")
-    public void RelationshipGameService_Game()
-    {
+    public void RelationshipGameService_Game() {
         // arrange
         GameService expected = new GameService();
         //act
@@ -168,10 +172,10 @@ public class GameServiceTest {
         // assert
         assertEquals(expected, answer);
     }
+
     @Test
     @DisplayName("allRelationsTest")
-    public void allRelationsTest ()
-    {
+    public void allRelationsTest() {
         // arrange
         GameService expected = new GameService();
         //act
@@ -186,8 +190,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("SkipTest")
-    public void SkipTest ()
-    {
+    public void SkipTest() {
         GameService gameservice = new GameService();
         boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
 
@@ -198,8 +201,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("ReverseTest")
-    public void ReverseTest ()
-    {
+    public void ReverseTest() {
         GameService gameservice = new GameService();
         boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
 
@@ -210,8 +212,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("ChooseTest")
-    public void ChooseTest ()
-    {
+    public void ChooseTest() {
         GameService gameservice = new GameService();
         boolean expected = true;
         boolean answer = false;
@@ -228,8 +229,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("ChooseDrawTest")
-    public void ChooseDrawTest ()
-    {
+    public void ChooseDrawTest() {
         GameService gameservice = new GameService();
         boolean expected = true;
         boolean answer = false;
@@ -246,8 +246,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("DrawCardDeckTest")
-    public void DrawCardDeckTest ()
-    {
+    public void DrawCardDeckTest() {
         GameService gameService = new GameService();
         int before = gameService.getGame().getDrawCardDeck().size();
         gameService.drawCard(4);
@@ -260,15 +259,15 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("DrawCardDeckRemoveTest")
-    public void DrawCardDeckRemoveTest ()
-    {
+    public void DrawCardDeckRemoveTest() {
         GameService gameService = new GameService();
         Card card = gameService.getGame().getDrawCardDeck().getFirst();
         gameService.drawCard(1);
         int counter = 0;
         int expected = 0;
         for (int i = 0; i < gameService.getGame().getDrawCardDeck().size(); i++) {
-            if (gameService.getGame().getDrawCardDeck().get(i).getColor() == card.getColor() && gameService.getGame().getDrawCardDeck().get(i).getValue() == card.getValue()) counter++;
+            if (gameService.getGame().getDrawCardDeck().get(i).getColor() == card.getColor() && gameService.getGame().getDrawCardDeck().get(i).getValue() == card.getValue())
+                counter++;
         }
         if (card.getColor() == Card.Color.BLACK) expected = 3;
         else expected = 1;
@@ -278,8 +277,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("CheckFirstCardIsSet")
-    public void CheckFirstCardIsSet ()
-    {
+    public void CheckFirstCardIsSet() {
         GameService gameService = new GameService();
         Card card = gameService.getGame().getLastPlayedCard();
 
@@ -290,8 +288,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("CheckFirstCardIsNotBlack")
-    public void CheckFirstCardIsNotBlack ()
-    {
+    public void CheckFirstCardIsNotBlack() {
         GameService gameService = new GameService();
         Card card = gameService.getGame().getLastPlayedCard();
 
@@ -302,7 +299,7 @@ public class GameServiceTest {
 
     @Test
     @DisplayName("CheckResetOnBlackCards")
-    public void CheckResetOnBlackCards () {
+    public void CheckResetOnBlackCards() {
         GameService gameService = new GameService();
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
         gameService.playCard(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE));
