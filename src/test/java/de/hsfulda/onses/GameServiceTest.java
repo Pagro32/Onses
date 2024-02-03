@@ -299,4 +299,17 @@ public class GameServiceTest {
 
         assertTrue(answer);
     }
+
+    @Test
+    @DisplayName("CheckResetOnBlackCards")
+    public void CheckResetOnBlackCards () {
+        GameService gameService = new GameService();
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.playCard(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE));
+        gameService.playCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.FIVE));
+
+        Card card = gameService.getGame().getDrawCardDeck().getLast();
+
+        assertEquals(Card.Color.BLACK, card.getColor());
+    }
 }
