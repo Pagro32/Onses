@@ -97,17 +97,19 @@ public class PlayerServiceTest {
     @Test
     @DisplayName("CheckForCardRemoval")
     void CheckForCardRemoval() {
-        PlayerService playerService = new PlayerService();
+        GameService gameService = new GameService();
 
         Card card1 = new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.TWO);
         Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
-        playerService.getPlayerList().getFirst().addCardToPlayerDeck(card1);
-        playerService.getPlayerList().getFirst().addCardToPlayerDeck(card2);
-        int before = playerService.getPlayerList().getFirst().getPlayerDeck().size();
+        gameService.getGame().getPlayerService().setCurrentTurn(true);
 
-        playerService.removeCardFromPlayerDeck(card1);
-        int after = playerService.getPlayerList().getFirst().getPlayerDeck().size();
+        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(card1);
+        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(card2);
+        int before = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+
+        gameService.getGame().getPlayerService().removeCardFromPlayerDeck(card1);
+        int after = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
 
         assertEquals(before - 1, after);
     }
