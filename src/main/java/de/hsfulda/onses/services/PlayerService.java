@@ -53,20 +53,9 @@ public class PlayerService {
         Player player;
         if (this.currentTurn) {
             player = playerList.getFirst();
-            for (int i = 0; i < player.getPlayerDeck().size(); i++) {
-                if (player.getPlayerDeck().get(i) == card) {
-                    player.getPlayerDeck().remove(i);
-                    break;
-                }
-            }
         } else {
             player = playerList.getLast();
-            for (int i = 0; i < player.getPlayerDeck().size(); i++) {
-                if (player.getPlayerDeck().get(i) == card) {
-                    player.getPlayerDeck().remove(i);
-                    break;
-                }
-            }
         }
+        player.getPlayerDeck().remove(card);
     }
 }
