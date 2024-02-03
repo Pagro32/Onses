@@ -1,6 +1,8 @@
 
 package de.hsfulda.onses;
 
+import com.sun.tools.jconsole.JConsoleContext;
+import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.services.PlayerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -89,5 +91,23 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer1);
         assertEquals(expected, answer2);
+    }
+
+    @Test
+    @DisplayName("CheckForCardRemoval")
+    void CheckForCardRemoval() {
+        PlayerService playerService = new PlayerService();
+
+        Card card1 = new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.TWO);
+        Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        playerService.getPlayerList().getFirst().addCardToPlayerDeck(card1);
+        playerService.getPlayerList().getFirst().addCardToPlayerDeck(card2);
+        int before = playerService.getPlayerList().getFirst().getPlayerDeck().size();
+
+        playerService.removeCardFromPlayerDeck(card1);
+        int after = playerService.getPlayerList().getFirst().getPlayerDeck().size();
+
+        assertEquals(before - 1, after);
     }
 }
