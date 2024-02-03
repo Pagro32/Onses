@@ -276,4 +276,15 @@ public class GameServiceTest {
         assertEquals(expected, counter);
     }
 
+    @Test
+    @DisplayName("CheckFirstCardIsSet")
+    public void CheckFirstCardIsSet ()
+    {
+        GameService gameService = new GameService();
+        Card card = gameService.getGame().getLastPlayedCard();
+
+        boolean answer = card != null;
+
+        assertTrue(answer);
+    }
 }
