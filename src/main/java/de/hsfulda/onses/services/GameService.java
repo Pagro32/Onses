@@ -8,6 +8,7 @@ import java.util.Collections;
 
 public class GameService {
     private final Game game;
+
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
@@ -22,6 +23,7 @@ public class GameService {
             }
         }
     }
+
     public GameService() {
         this(new Game());
     }
@@ -33,6 +35,7 @@ public class GameService {
     public void nextPlayer() {
         game.getPlayerService().nextTurn();
     }
+
     public void drawCard(int amount) {
         Player player = null;
         if (game.getPlayerService().getCurrentTurn()) {
@@ -41,18 +44,23 @@ public class GameService {
             player = game.getPlayerService().getPlayerList().getLast();
         }
         for (int i = 0; i < amount; i++) {
-           player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
-           game.getDrawCardDeck().removeFirst();
+            player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
+            game.getDrawCardDeck().removeFirst();
         }
         if (amount != 1) {
             nextPlayer();
         }
     }
-    public void playCard(Card card)
-    {
-     // add lastPlayedCard back to drawCardDeck
-         game.setLastPlayedCard(card);
-     // check for special rules (draw, colorchoose, skip,...)
+
+    public void playCard(Card card) {
+        // add lastPlayedCard back to drawCardDeck
+        Card lastCard = game.getLastPlayedCard();
+        if (lastCard.getValue() == Card.Value.CHOOSE || lastCard.getValue() == Card.Value.CHOOSEDRAW) {
+            lastCard.setColor(Card.Color.BLACK);
+        }
+        game.addCardToDrawCardDeck(lastCard);
+        game.setLastPlayedCard(card);
+        // check for special rules (draw, colorchoose, skip,...)
         // Skip
         if (card.getValue() == Card.Value.SKIP) {
             nextPlayer();
@@ -85,8 +93,7 @@ public class GameService {
         }
     }
 
-    public boolean legalMove(Card card)
-    {
+    public boolean legalMove(Card card) {
         boolean legalMoveFound = false;
         Card lastCard = game.getLastPlayedCard();
         // rules:
@@ -100,16 +107,16 @@ public class GameService {
     }
 
     public void fillDrawDeck() {
-        for (Card.Color i : Card.Color.values()){
-            for (Card.Value j : Card.Value.values()){
-                if (i != Card.Color.BLACK && j != Card.Value.CHOOSE && j != Card.Value.CHOOSEDRAW){
+        for (Card.Color i : Card.Color.values()) {
+            for (Card.Value j : Card.Value.values()) {
+                if (i != Card.Color.BLACK && j != Card.Value.CHOOSE && j != Card.Value.CHOOSEDRAW) {
                     game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j));
                     game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j));
                 }
             }
         }
 
-        for (int i = 0; i != 4; i++){
+        for (int i = 0; i != 4; i++) {
             game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE));
             game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSEDRAW));
         }
