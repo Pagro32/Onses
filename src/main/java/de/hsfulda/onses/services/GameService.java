@@ -59,34 +59,33 @@ public class GameService {
         game.setLastPlayedCard(card);
         // check for special rules (draw, colorchoose, skip,...)
         // Skip
-        if (card.getValue() == Card.Value.SKIP) {
-            nextPlayer();
-            nextPlayer();
-        }
-        // Reverse
-        if (card.getValue() == Card.Value.REVERSE) {
-            nextPlayer();
-            nextPlayer();
-        }
-        // Choose
-        if (card.getValue() == Card.Value.CHOOSE) {
-            // Abfrage Farbe
-            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
-            game.changeLastPlayedCardColor(color);
-            nextPlayer();
-        }
-        // Draw
-        if (card.getValue() == Card.Value.DRAWTWO) {
-            nextPlayer();
-            drawCard(2);
-        }
-        // ChooseDraw
-        if (card.getValue() == Card.Value.CHOOSEDRAW) {
-            // Abfrage Farbe
-            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
-            game.changeLastPlayedCardColor(color);
-            nextPlayer();
-            drawCard(4);
+
+        switch (card.getValue()) {
+            case SKIP:
+                nextPlayer();
+                nextPlayer();
+                break;
+            case REVERSE:
+                nextPlayer();
+                nextPlayer();
+                break;
+            case CHOOSE:
+                // Abfrage Farbe
+                Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+                game.changeLastPlayedCardColor(color);
+                nextPlayer();
+                break;
+            case CHOOSEDRAW:
+                // Abfrage Farbe
+                Card.Color color1 = Card.Color.BLUE; //Vorübergehend Blau
+                game.changeLastPlayedCardColor(color1);
+                nextPlayer();
+                drawCard(4);
+                break;
+            case DRAWTWO:
+                nextPlayer();
+                drawCard(2);
+                break;
         }
     }
 
