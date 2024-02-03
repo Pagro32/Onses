@@ -36,8 +36,11 @@ public class GameService {
            player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
            game.getDrawCardDeck().removeFirst();
         }
+        if (amount != 1) {
+            nextPlayer();
+        }
     }
-    public void playCard(Player player, Card card)
+    public void playCard(Card card)
     {
      // add lastPlayedCard back to drawCardDeck
          game.setLastPlayedCard(card);
@@ -63,7 +66,6 @@ public class GameService {
         if (card.getValue() == Card.Value.DRAWTWO) {
             nextPlayer();
             drawCard(2);
-            nextPlayer();
         }
         // ChooseDraw
         if (card.getValue() == Card.Value.CHOOSEDRAW) {
@@ -72,11 +74,10 @@ public class GameService {
             game.changeLastPlayedCardColor(color);
             nextPlayer();
             drawCard(4);
-            nextPlayer();
         }
     }
 
-    public boolean legalMove(Player player, Card card)
+    public boolean legalMove(Card card)
     {
         boolean legalMoveFound = false;
         Card lastCard = game.getLastPlayedCard();
