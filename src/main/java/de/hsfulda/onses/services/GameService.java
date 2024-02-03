@@ -89,6 +89,11 @@ public class GameService {
                 drawCard(2);
                 break;
         }
+        if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty()) {
+            System.out.println("Player wins");
+        } else if (this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
+            System.out.println("Bot wins");
+        }
     }
 
     public boolean legalMove(Card card) {
