@@ -13,6 +13,14 @@ public class GameService {
         this.game.setGameService(this);
         fillDrawDeck();
         shuffleDeck();
+
+        for (int i = 0; i < this.game.getDrawCardDeck().size(); i++) {
+            Card card = this.game.getDrawCardDeck().get(i);
+            if (card.getColor() != Card.Color.BLACK) {
+                this.game.setLastPlayedCard(card);
+                break;
+            }
+        }
     }
     public GameService() {
         this(new Game());
