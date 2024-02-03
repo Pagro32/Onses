@@ -53,7 +53,7 @@ public class GameService {
         game.addCardToDrawCardDeck(lastCard);
     }
 
-    public void changeColor() {
+    public void chooseColor() {
         // Abfrage Farbe
         Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
         game.changeLastPlayedCardColor(color);
@@ -84,11 +84,11 @@ public class GameService {
                 nextPlayer();
                 break;
             case CHOOSE:
-                changeColor();
+                chooseColor();
                 nextPlayer();
                 break;
             case CHOOSEDRAW:
-                changeColor();
+                chooseColor();
                 nextPlayer();
                 drawCard(4);
                 break;
