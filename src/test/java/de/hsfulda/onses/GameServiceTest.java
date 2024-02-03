@@ -287,4 +287,16 @@ public class GameServiceTest {
 
         assertTrue(answer);
     }
+
+    @Test
+    @DisplayName("CheckFirstCardIsNotBlack")
+    public void CheckFirstCardIsNotBlack ()
+    {
+        GameService gameService = new GameService();
+        Card card = gameService.getGame().getLastPlayedCard();
+
+        boolean answer = card.getColor() != Card.Color.BLACK;
+
+        assertTrue(answer);
+    }
 }
