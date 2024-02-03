@@ -2,6 +2,7 @@ package de.hsfulda.onses.services;
 
 import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
+import de.hsfulda.onses.models.Card;
 
 import java.util.ArrayList;
 
@@ -15,12 +16,12 @@ public class PlayerService {
     public ArrayList<Player> getPlayerList() {
         return playerList;
     }
+
     public void addPlayerToList(Player player) {
         playerList.add(player);
     }
 
-    public void nextTurn()
-    {
+    public void nextTurn() {
         currentTurn = !currentTurn;
     }
 
@@ -43,9 +44,29 @@ public class PlayerService {
         return this;
     }
 
-    public PlayerService()
-    {
+    public PlayerService() {
         addPlayerToList(new Player().setPlayerService(this));
         addPlayerToList(new Player().setPlayerService(this));
+    }
+
+    public void removeCardFromPlayerDeck(Card card) {
+        Player player;
+        if (this.currentTurn) {
+            player = playerList.getFirst();
+            for (int i = 0; i < player.getPlayerDeck().size(); i++) {
+                if (player.getPlayerDeck().get(i) == card) {
+                    player.getPlayerDeck().remove(i);
+                    break;
+                }
+            }
+        } else {
+            player = playerList.getLast();
+            for (int i = 0; i < player.getPlayerDeck().size(); i++) {
+                if (player.getPlayerDeck().get(i) == card) {
+                    player.getPlayerDeck().remove(i);
+                    break;
+                }
+            }
+        }
     }
 }
