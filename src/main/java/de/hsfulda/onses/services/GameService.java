@@ -59,6 +59,14 @@ public class GameService {
         game.changeLastPlayedCardColor(color);
     }
 
+    public void checkForWin() {
+        if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty()) {
+            System.out.println("Player wins");
+        } else if (this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
+            System.out.println("Bot wins");
+        }
+    }
+
     public void playCard(Card card) {
         // add lastPlayedCard back to drawCardDeck
         this.addLastPlayedCardToDrawCardDeck();
@@ -89,11 +97,7 @@ public class GameService {
                 drawCard(2);
                 break;
         }
-        if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty()) {
-            System.out.println("Player wins");
-        } else if (this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
-            System.out.println("Bot wins");
-        }
+        checkForWin();
     }
 
     public boolean legalMove(Card card) {
