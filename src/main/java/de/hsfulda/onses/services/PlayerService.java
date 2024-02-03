@@ -3,6 +3,7 @@ package de.hsfulda.onses.services;
 import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
 import de.hsfulda.onses.models.Card;
+import de.hsfulda.onses.services.GameService;
 
 import java.util.ArrayList;
 
@@ -57,5 +58,13 @@ public class PlayerService {
             player = playerList.getLast();
         }
         player.getPlayerDeck().remove(card);
+    }
+
+    public void botMove() {
+        for (int i = 0; i < this.playerList.getLast().getPlayerDeck().size(); i++) {
+            if (getGame().getGameService().legalMove(this.playerList.getLast().getPlayerDeck().get(i))) {
+                //do something...
+            }
+        }
     }
 }
