@@ -108,6 +108,9 @@ public class GameService {
                 nextPlayer();
                 drawCard(2);
                 break;
+            default:
+                nextPlayer();
+                break;
         }
         checkForWin();
     }
