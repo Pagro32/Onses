@@ -244,6 +244,25 @@ public class GameServiceTest {
 
     }
     @Test
+    @DisplayName("DrawByChoiceForceKeep")
+    public void DrawByChoiceForceKeep() {
+
+        GameService gameService = new GameService();
+        Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.drawCard(gameService.getGame().getDrawCardDeck().size());
+        gameService.getGame().getPlayerService().setCurrentTurn(true);
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.SEVEN));
+        gameService.getGame().addCardToDrawCardDeck(input);
+        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.TWO));
+        gameService.drawCard(1);
+
+        Card answer = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().getLast();
+
+        assertEquals(input, answer);
+    }
+
+    @Test
     @DisplayName("DrawCardPlayerDeckBot")
     public void DrawCardPlayerDeckBot() {
         GameService gameService = new GameService();
