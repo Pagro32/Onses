@@ -87,11 +87,7 @@ public class GameService {
         // Skip
 
         switch (card.getValue()) {
-            case SKIP:
-                nextPlayer();
-                nextPlayer();
-                break;
-            case REVERSE:
+            case SKIP, REVERSE:
                 nextPlayer();
                 nextPlayer();
                 break;
@@ -160,7 +156,6 @@ public class GameService {
     }
 
     public void fillPlayerDecks() {
-
         this.drawCard(7);
         this.drawCard(7);
     }
