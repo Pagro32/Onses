@@ -31,8 +31,8 @@ public class GameService {
     }
 
     public void drawCard(int amount) {
-        Player player = null;
         if (!game.getDrawCardDeck().isEmpty()) {
+            Player player = null;
             if (game.getPlayerService().getCurrentTurn()) {
                 player = game.getPlayerService().getPlayerList().getFirst();
             } else {
@@ -41,6 +41,13 @@ public class GameService {
             for (int i = 0; i < amount; i++) {
                 player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
                 game.getDrawCardDeck().removeFirst();
+            }
+            if (amount == 1 && !player.getPlayerDeck().isEmpty()) { //refactoring DrawnCard
+                Card card = player.getPlayerDeck().getLast();
+                if (legalMove(card)) {
+                    player.getPlayerService().removeCardFromPlayerDeck(card);
+                    playCard(card);}
+                else nextPlayer();
             }
         }
         if (amount != 1) {
