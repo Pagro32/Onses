@@ -148,13 +148,9 @@ public class GameService {
     }
 
     public void fillPlayerDecks() {
-        for (int i = 0; i < 7; i++) {
-            this.drawCard(1);
-            this.nextPlayer();
 
-            this.drawCard(1);
-            this.nextPlayer();
-        }
+        this.drawCard(7);
+        this.drawCard(7);
     }
 
 }
