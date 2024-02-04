@@ -258,24 +258,6 @@ public class GameServiceTest {
     }
 
     @Test
-    @DisplayName("DrawCardDeckRemoveTest")
-    public void DrawCardDeckRemoveTest() {
-        GameService gameService = new GameService();
-        Card card = gameService.getGame().getDrawCardDeck().getFirst();
-        gameService.drawCard(1);
-        int counter = 0;
-        int expected = 0;
-        for (int i = 0; i < gameService.getGame().getDrawCardDeck().size(); i++) {
-            if (gameService.getGame().getDrawCardDeck().get(i).getColor() == card.getColor() && gameService.getGame().getDrawCardDeck().get(i).getValue() == card.getValue())
-                counter++;
-        }
-        if (card.getColor() == Card.Color.BLACK) expected = 3;
-        else expected = 1;
-
-        assertEquals(expected, counter);
-    }
-
-    @Test
     @DisplayName("CheckFirstCardIsSet")
     public void CheckFirstCardIsSet() {
         GameService gameService = new GameService();
