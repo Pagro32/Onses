@@ -42,11 +42,13 @@ public class GameService {
                 player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
                 game.getDrawCardDeck().removeFirst();
             }
-            if (amount == 1 && !player.getPlayerDeck().isEmpty()) { //refactoring DrawnCard
-                Card card = player.getPlayerDeck().getLast();
-                if (legalMove(card)) {
-                    player.getPlayerService().removeCardFromPlayerDeck(card);
-                    playCard(card);}
+            if (amount == 1 && !player.getPlayerDeck().isEmpty()) {
+                Card drawnCard = player.getPlayerDeck().getLast();
+
+                if (legalMove(drawnCard)) {
+                    player.getPlayerService().removeCardFromPlayerDeck(drawnCard);
+                    playCard(drawnCard);
+                }
                 else nextPlayer();
             }
         }
