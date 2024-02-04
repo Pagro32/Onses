@@ -15,14 +15,7 @@ public class GameService {
         fillDrawDeck();
         shuffleDeck();
         setFirstCard();
-
-        for (int i = 0; i < 7; i++) {
-            this.drawCard(1);
-            this.nextPlayer();
-
-            this.drawCard(1);
-            this.nextPlayer();
-        }
+        fillPlayerDecks();
     }
 
     public GameService() {
@@ -148,6 +141,16 @@ public class GameService {
                 this.game.setLastPlayedCard(card);
                 break;
             }
+        }
+    }
+
+    public void fillPlayerDecks() {
+        for (int i = 0; i < 7; i++) {
+            this.drawCard(1);
+            this.nextPlayer();
+
+            this.drawCard(1);
+            this.nextPlayer();
         }
     }
 
