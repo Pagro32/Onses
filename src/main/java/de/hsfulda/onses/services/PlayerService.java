@@ -61,6 +61,7 @@ public class PlayerService {
     }
 
     public void botMove() {
+        Card lastPlayedCard = game.getLastPlayedCard();
         for (int i = 0; i < this.playerList.getLast().getPlayerDeck().size(); i++) {
             if (getGame().getGameService().legalMove(this.playerList.getLast().getPlayerDeck().get(i))) {
                 Card playCard = this.playerList.getLast().getPlayerDeck().get(i);
@@ -68,6 +69,9 @@ public class PlayerService {
                 getGame().getGameService().playCard(playCard);
                 break;
             }
+        }
+        if (lastPlayedCard == game.getLastPlayedCard()) {
+            game.getGameService().drawCard(1);
         }
     }
 }
