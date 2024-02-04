@@ -258,6 +258,17 @@ public class GameServiceTest {
     }
 
     @Test
+    @DisplayName("CheckThatBotDeckHasSevenCardsAfterGameStart")
+    public void CheckThatBotDeckHasSevenCardsAfterGameStart() {
+        GameService gameService = new GameService();
+
+        int expected = 7;
+        int actual = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("CheckFirstCardIsSet")
     public void CheckFirstCardIsSet() {
         GameService gameService = new GameService();
