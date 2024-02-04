@@ -256,6 +256,19 @@ public class GameServiceTest {
         int answer = before - after;
         assertEquals(expected, answer);
     }
+    @Test
+    @DisplayName("DrawCardPlayerDeck")
+    public void DrawCardPlayerDeck() {
+        GameService gameService = new GameService();
+        gameService.getGame().getPlayerService().setCurrentTurn(true);
+        int before = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+        gameService.drawCard(4);
+        int after = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+
+        int expected = 4;
+        int answer = after - before;
+        assertEquals(expected, answer);
+    }
 
     @Test
     @DisplayName("CheckThatBotDeckHasSevenCardsAfterGameStart")
