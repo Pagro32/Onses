@@ -139,6 +139,7 @@ public class GameService {
             Card card = this.game.getDrawCardDeck().get(i);
             if (card.getColor() != Card.Color.BLACK) {
                 this.game.setLastPlayedCard(card);
+                this.game.getDrawCardDeck().remove(card);
                 break;
             }
         }
