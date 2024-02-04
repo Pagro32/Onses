@@ -32,14 +32,16 @@ public class GameService {
 
     public void drawCard(int amount) {
         Player player = null;
-        if (game.getPlayerService().getCurrentTurn()) {
-            player = game.getPlayerService().getPlayerList().getFirst();
-        } else {
-            player = game.getPlayerService().getPlayerList().getLast();
-        }
-        for (int i = 0; i < amount; i++) {
-            player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
-            game.getDrawCardDeck().removeFirst();
+        if (!game.getDrawCardDeck().isEmpty()) {
+            if (game.getPlayerService().getCurrentTurn()) {
+                player = game.getPlayerService().getPlayerList().getFirst();
+            } else {
+                player = game.getPlayerService().getPlayerList().getLast();
+            }
+            for (int i = 0; i < amount; i++) {
+                player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
+                game.getDrawCardDeck().removeFirst();
+            }
         }
         if (amount != 1) {
             nextPlayer();
