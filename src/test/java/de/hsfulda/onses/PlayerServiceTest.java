@@ -134,4 +134,23 @@ public class PlayerServiceTest {
 
         assertEquals(before - 1, after);
     }
+
+    @Test
+    @DisplayName("CheckThatLastPlayedCardWasPlayedByBot")
+    void CheckThatLastPlayedCardWasPlayedByBot() {
+        GameService gameService = new GameService();
+
+        Card card1 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().clear();
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card1);
+
+        gameService.getGame().getPlayerService().botMove();
+        Card lastPlayedCard = gameService.getGame().getLastPlayedCard();
+
+        assertEquals(card1, lastPlayedCard);
+    }
 }
