@@ -250,7 +250,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
-        gameService.drawCard(gameService.getGame().getDrawCardDeck().size());
+        gameService.getGame().getDrawCardDeck().clear();
         gameService.getGame().getPlayerService().setCurrentTurn(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.SEVEN));
         gameService.getGame().addCardToDrawCardDeck(input);
@@ -309,7 +309,7 @@ public class GameServiceTest {
         GameService gameService = new GameService();
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
-        gameService.drawCard(gameService.getGame().getDrawCardDeck().size());
+        gameService.getGame().getDrawCardDeck().clear();
         gameService.getGame().getPlayerService().setCurrentTurn(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.SEVEN));
         gameService.getGame().addCardToDrawCardDeck(input);
