@@ -312,4 +312,23 @@ public class GameServiceTest {
 
         assertEquals(7, numberOfCards);
     }
+
+    @Test
+    @DisplayName("CheckThatFirstCardGetsRemovedFromDrawCardDeck")
+    public void CheckThatFirstCardGetsRemovedFromDrawCardDeck() {
+        GameService gameService = new GameService();
+
+        Card lastPlayedCard = gameService.getGame().getLastPlayedCard();
+
+        boolean lastPlayedCardDoesNotExistInDrawCardDeck = true;
+
+        for (int i = 0; i < gameService.getGame().getDrawCardDeck().size(); i++) {
+            if (gameService.getGame().getDrawCardDeck().get(i) == lastPlayedCard) {
+                lastPlayedCardDoesNotExistInDrawCardDeck = false;
+                break;
+            }
+        }
+
+        assertTrue(lastPlayedCardDoesNotExistInDrawCardDeck);
+    }
 }
