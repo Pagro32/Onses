@@ -291,4 +291,14 @@ public class GameServiceTest {
 
         assertEquals(Card.Color.BLACK, card.getColor());
     }
+
+    @Test
+    @DisplayName("CheckThatPlayerReceivedSevenCards")
+    public void CheckThatPlayerReceivedSevenCards() {
+        GameService gameService = new GameService();
+
+        int numberOfCards = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+
+        assertEquals(7, numberOfCards);
+    }
 }
