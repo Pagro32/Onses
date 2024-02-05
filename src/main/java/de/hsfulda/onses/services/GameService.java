@@ -5,6 +5,7 @@ import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
 
 import java.util.Collections;
+import java.util.Random;
 
 public class GameService {
     private final Game game;
@@ -69,6 +70,31 @@ public class GameService {
         // Abfrage Farbe
         Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
         game.changeLastPlayedCardColor(color);
+
+        if (!game.getPlayerService().getCurrentTurn()){
+            int min = 0;
+            int max = 3;
+            Random rand = new Random();
+            int randomNum = rand.nextInt((max - min) + 1) + min;
+            switch (randomNum){
+                case 0:
+                    color = Card.Color.BLUE;
+                    game.changeLastPlayedCardColor(color);
+                    break;
+                case 1:
+                    color = Card.Color.RED;
+                    game.changeLastPlayedCardColor(color);
+                    break;
+                case 2:
+                    color = Card.Color.YELLOW;
+                    game.changeLastPlayedCardColor(color);
+                    break;
+                case 3:
+                    color = Card.Color.GREEN;
+                    game.changeLastPlayedCardColor(color);
+                    break;
+            }
+        }
     }
 
     public void checkForWin() {
