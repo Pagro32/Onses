@@ -1,6 +1,9 @@
 
 package de.hsfulda.onses;
 
+import com.sun.tools.jconsole.JConsoleContext;
+import de.hsfulda.onses.models.Card;
+import de.hsfulda.onses.services.GameService;
 import de.hsfulda.onses.services.PlayerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -89,5 +92,66 @@ public class PlayerServiceTest {
         // assert
         assertEquals(expected, answer1);
         assertEquals(expected, answer2);
+    }
+
+    @Test
+    @DisplayName("CheckForCardRemoval")
+    void CheckForCardRemoval() {
+        GameService gameService = new GameService();
+
+        Card card1 = new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.TWO);
+        Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.getGame().getPlayerService().setCurrentTurn(true);
+
+        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(card1);
+        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(card2);
+        int before = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+
+        gameService.getGame().getPlayerService().removeCardFromPlayerDeck(card1);
+        int after = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
+
+        assertEquals(before - 1, after);
+    }
+
+    @Test
+    @DisplayName("CheckCardRemovalFromBotDeck")
+    void CheckCardRemovalFromBotDeck() {
+        GameService gameService = new GameService();
+
+        Card card1 = new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.TWO);
+        Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.setTest(true);
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card1);
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card2);
+        int before = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
+
+        gameService.getGame().getPlayerService().botMove();
+        int after = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
+
+        assertEquals(before - 1, after);
+    }
+
+    @Test
+    @DisplayName("CheckThatLastPlayedCardWasPlayedByBot")
+    void CheckThatLastPlayedCardWasPlayedByBot() {
+        GameService gameService = new GameService();
+
+        Card card1 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
+
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().clear();
+        gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card1);
+
+        gameService.getGame().getPlayerService().botMove();
+        Card lastPlayedCard = gameService.getGame().getLastPlayedCard();
+
+        assertEquals(card1, lastPlayedCard);
     }
 }

@@ -2,6 +2,8 @@ package de.hsfulda.onses.services;
 
 import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
+import de.hsfulda.onses.models.Card;
+import de.hsfulda.onses.services.GameService;
 
 import java.util.ArrayList;
 
@@ -15,12 +17,12 @@ public class PlayerService {
     public ArrayList<Player> getPlayerList() {
         return playerList;
     }
+
     public void addPlayerToList(Player player) {
         playerList.add(player);
     }
 
-    public void nextTurn()
-    {
+    public void nextTurn() {
         currentTurn = !currentTurn;
     }
 
@@ -43,9 +45,33 @@ public class PlayerService {
         return this;
     }
 
-    public PlayerService()
-    {
+    public PlayerService() {
         addPlayerToList(new Player().setPlayerService(this));
         addPlayerToList(new Player().setPlayerService(this));
+    }
+
+    public void removeCardFromPlayerDeck(Card card) {
+        Player player;
+        if (this.currentTurn) {
+            player = playerList.getFirst();
+        } else {
+            player = playerList.getLast();
+        }
+        player.getPlayerDeck().remove(card);
+    }
+
+    public void botMove() {
+        Card lastPlayedCard = game.getLastPlayedCard();
+        for (int i = 0; i < this.playerList.getLast().getPlayerDeck().size(); i++) {
+            if (getGame().getGameService().legalMove(this.playerList.getLast().getPlayerDeck().get(i))) {
+                Card playCard = this.playerList.getLast().getPlayerDeck().get(i);
+                this.removeCardFromPlayerDeck(playCard);
+                getGame().getGameService().playCard(playCard);
+                break;
+            }
+        }
+        if (lastPlayedCard == game.getLastPlayedCard()) {
+            game.getGameService().drawCard(1);
+        }
     }
 }
