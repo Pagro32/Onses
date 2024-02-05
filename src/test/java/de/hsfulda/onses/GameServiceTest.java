@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import de.hsfulda.onses.models.Game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -394,5 +395,25 @@ public class GameServiceTest {
         }
 
         assertTrue(lastPlayedCardDoesNotExistInDrawCardDeck);
+    }
+
+    @Test
+    @DisplayName("ChooseColorBotTest")
+    public void ChooseColorBotTest() {
+        GameService gameService = new GameService();
+        Card card = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE);
+        boolean answer = false;
+
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().clear();
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().add(card);
+
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+        gameService.playCard(card);
+
+        if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK){
+            answer = true;
+        }
+
+        assertTrue(answer);
     }
 }
