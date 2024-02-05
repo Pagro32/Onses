@@ -17,6 +17,9 @@ public class GameService {
         return this;
     }
 
+    public boolean getTest() {
+        return this.test;
+    }
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
