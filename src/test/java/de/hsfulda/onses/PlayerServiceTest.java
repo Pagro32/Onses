@@ -123,6 +123,7 @@ public class PlayerServiceTest {
         Card card2 = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
+        gameService.setTest(true);
         gameService.getGame().getPlayerService().setCurrentTurn(false);
 
         gameService.getGame().getPlayerService().getPlayerList().getLast().addCardToPlayerDeck(card1);
