@@ -424,4 +424,14 @@ public class GameServiceTest {
 
         assertFalse(gameService.getTest());
     }
+
+    @Test
+    @DisplayName("CheckIfTestCanBeSetToTrue")
+    public void CheckIfTestCanBeSetToTrue() {
+        GameService gameService = new GameService();
+
+        gameService.setTest(!gameService.getTest());
+
+        assertTrue(gameService.getTest());
+    }
 }
