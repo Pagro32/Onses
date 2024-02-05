@@ -145,6 +145,11 @@ public class GameService {
                 break;
         }
         checkForWin();
+        if (!this.test) {
+            if (!game.getPlayerService().getCurrentTurn()) {
+                game.getPlayerService().botMove();
+            }
+        }
     }
 
     public boolean legalMove(Card card) {
