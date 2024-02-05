@@ -10,6 +10,13 @@ import java.util.Random;
 public class GameService {
     private final Game game;
 
+    private boolean test = false;
+
+    public GameService setTest(boolean test) {
+        this.test = test;
+        return this;
+    }
+
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
