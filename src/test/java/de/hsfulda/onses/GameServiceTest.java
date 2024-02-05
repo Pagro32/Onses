@@ -459,4 +459,19 @@ public class GameServiceTest {
 
         assertTrue(gameService.getTest());
     }
+
+    @Test
+    @DisplayName("CheckIfBotMovesAutomaticallyAfterPlayer")
+    public void CheckIfBotMovesAutomaticallyAfterPlayer() {
+        GameService gameService = new GameService();
+
+        Card card = new Card().setColor(Card.Color.BLUE).setValue(Card.Value.ONE);
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().add(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.FIVE));
+
+        gameService.playCard(card);
+
+        boolean answer = gameService.getGame().getLastPlayedCard() != card;
+
+        assertTrue(answer);
+    }
 }
