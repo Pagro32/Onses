@@ -19,6 +19,7 @@ public class GameServiceTest {
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.EIGHT);
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.playCard(input);
         Card answer = gameService.getGame().getLastPlayedCard();
         // assert
@@ -32,6 +33,7 @@ public class GameServiceTest {
         Card input = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE);
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.playCard(input);
         Card answer = gameService.getGame().getLastPlayedCard();
         // assert
@@ -46,6 +48,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
 
         boolean answer = gameService.legalMove(input);
@@ -61,6 +64,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.ONE));
 
         boolean answer = gameService.legalMove(input);
@@ -72,6 +76,7 @@ public class GameServiceTest {
     @DisplayName("FillDrawCardDeck")
     public void FillDrawCardDeck() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         int expected = gameService.getGame().getDrawCardDeck().size() + 112;
 
         gameService.fillDrawDeck();
@@ -88,6 +93,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.ONE));
 
         boolean answer = gameService.legalMove(input);
@@ -103,6 +109,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
 
         boolean answer = gameService.legalMove(input);
@@ -118,6 +125,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
 
         boolean answer = gameService.legalMove(input);
@@ -133,6 +141,7 @@ public class GameServiceTest {
         boolean expected = true;
         // act
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FIVE));
 
         boolean answer = gameService.legalMove(input);
@@ -192,35 +201,38 @@ public class GameServiceTest {
     @Test
     @DisplayName("SkipTest")
     public void SkipTest() {
-        GameService gameservice = new GameService();
-        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+        GameService gameService = new GameService();
+        gameService.setTest(true);
+        boolean expected = gameService.getGame().getPlayerService().getCurrentTurn();
 
-        gameservice.playCard(new Card().setValue(Card.Value.SKIP).setColor(Card.Color.BLACK));
+        gameService.playCard(new Card().setValue(Card.Value.SKIP).setColor(Card.Color.BLACK));
 
-        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+        assertEquals(expected, gameService.getGame().getPlayerService().getCurrentTurn());
     }
 
     @Test
     @DisplayName("ReverseTest")
     public void ReverseTest() {
-        GameService gameservice = new GameService();
-        boolean expected = gameservice.getGame().getPlayerService().getCurrentTurn();
+        GameService gameService = new GameService();
+        gameService.setTest(true);
+        boolean expected = gameService.getGame().getPlayerService().getCurrentTurn();
 
-        gameservice.playCard(new Card().setValue(Card.Value.REVERSE).setColor(Card.Color.BLACK));
+        gameService.playCard(new Card().setValue(Card.Value.REVERSE).setColor(Card.Color.BLACK));
 
-        assertEquals(expected, gameservice.getGame().getPlayerService().getCurrentTurn());
+        assertEquals(expected, gameService.getGame().getPlayerService().getCurrentTurn());
     }
 
     @Test
     @DisplayName("ChooseTest")
     public void ChooseTest() {
-        GameService gameservice = new GameService();
+        GameService gameService = new GameService();
+        gameService.setTest(true);
         boolean expected = true;
         boolean answer = false;
 
-        gameservice.playCard(new Card().setValue(Card.Value.CHOOSE).setColor(Card.Color.BLACK));
+        gameService.playCard(new Card().setValue(Card.Value.CHOOSE).setColor(Card.Color.BLACK));
 
-        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+        if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
             answer = true;
         }
 
@@ -231,13 +243,14 @@ public class GameServiceTest {
     @Test
     @DisplayName("ChooseDrawTest")
     public void ChooseDrawTest() {
-        GameService gameservice = new GameService();
+        GameService gameService = new GameService();
+        gameService.setTest(true);
         boolean expected = true;
         boolean answer = false;
 
-        gameservice.playCard(new Card().setValue(Card.Value.CHOOSEDRAW).setColor(Card.Color.BLACK));
+        gameService.playCard(new Card().setValue(Card.Value.CHOOSEDRAW).setColor(Card.Color.BLACK));
 
-        if (gameservice.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
+        if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
             answer = true;
         }
 
@@ -249,6 +262,7 @@ public class GameServiceTest {
     public void DrawByChoiceForceKeep() {
 
         GameService gameService = new GameService();
+        gameService.setTest(true);
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
         gameService.getGame().getDrawCardDeck().clear();
@@ -267,6 +281,7 @@ public class GameServiceTest {
     @DisplayName("DrawCardPlayerDeckBot")
     public void DrawCardPlayerDeckBot() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().getPlayerService().setCurrentTurn(false);
         int before = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
         gameService.drawCard(2);
@@ -281,6 +296,7 @@ public class GameServiceTest {
     @DisplayName("DrawCardDeckTest")
     public void DrawCardDeckTest() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         int before = gameService.getGame().getDrawCardDeck().size();
         gameService.drawCard(4);
         int after = gameService.getGame().getDrawCardDeck().size();
@@ -293,6 +309,7 @@ public class GameServiceTest {
     @DisplayName("DrawCardPlayerDeck")
     public void DrawCardPlayerDeck() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().getPlayerService().setCurrentTurn(true);
         int before = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
         gameService.drawCard(4);
@@ -308,6 +325,7 @@ public class GameServiceTest {
     public void DrawByChoiceForcePlay() {
 
         GameService gameService = new GameService();
+        gameService.setTest(true);
         Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
 
         gameService.getGame().getDrawCardDeck().clear();
@@ -327,6 +345,7 @@ public class GameServiceTest {
     public void CheckThatBotDeckHasSevenCardsAfterGameStart() {
         GameService gameService = new GameService();
 
+        gameService.setTest(true);
         int expected = 7;
         int actual = gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size();
 
@@ -337,6 +356,7 @@ public class GameServiceTest {
     @DisplayName("CheckFirstCardIsSet")
     public void CheckFirstCardIsSet() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         Card card = gameService.getGame().getLastPlayedCard();
 
         boolean answer = card != null;
@@ -348,6 +368,7 @@ public class GameServiceTest {
     @DisplayName("CheckFirstCardIsNotBlack")
     public void CheckFirstCardIsNotBlack() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         Card card = gameService.getGame().getLastPlayedCard();
 
         boolean answer = card.getColor() != Card.Color.BLACK;
@@ -359,6 +380,7 @@ public class GameServiceTest {
     @DisplayName("CheckResetOnBlackCards")
     public void CheckResetOnBlackCards() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE));
         gameService.playCard(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE));
         gameService.playCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.FIVE));
@@ -373,6 +395,7 @@ public class GameServiceTest {
     public void CheckThatPlayerReceivedSevenCards() {
         GameService gameService = new GameService();
 
+        gameService.setTest(true);
         int numberOfCards = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size();
 
         assertEquals(7, numberOfCards);
@@ -383,6 +406,7 @@ public class GameServiceTest {
     public void CheckThatFirstCardGetsRemovedFromDrawCardDeck() {
         GameService gameService = new GameService();
 
+        gameService.setTest(true);
         Card lastPlayedCard = gameService.getGame().getLastPlayedCard();
 
         boolean lastPlayedCardDoesNotExistInDrawCardDeck = true;
@@ -401,6 +425,7 @@ public class GameServiceTest {
     @DisplayName("ChooseColorBotTest")
     public void ChooseColorBotTest() {
         GameService gameService = new GameService();
+        gameService.setTest(true);
         Card card = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE);
         boolean answer = false;
 
@@ -430,7 +455,7 @@ public class GameServiceTest {
     public void CheckIfTestCanBeSetToTrue() {
         GameService gameService = new GameService();
 
-        gameService.setTest(!gameService.getTest());
+        gameService.setTest(true);
 
         assertTrue(gameService.getTest());
     }
