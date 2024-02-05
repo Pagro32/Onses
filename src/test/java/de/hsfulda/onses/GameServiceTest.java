@@ -416,4 +416,12 @@ public class GameServiceTest {
 
         assertTrue(answer);
     }
+
+    @Test
+    @DisplayName("CheckIfTestWasInitializedWithFalse")
+    public void CheckIfTestWasInitializedWithFalse() {
+        GameService gameService = new GameService();
+
+        assertFalse(gameService.getTest());
+    }
 }
