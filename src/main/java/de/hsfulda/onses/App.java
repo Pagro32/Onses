@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        final AppController appController = new AppController(new Game());
+        final AppController appController = new AppController(new Game(), stage);
 
         stage.setTitle("Onses - Uno Game");
         stage.setScene(new Scene(appController.render()));
