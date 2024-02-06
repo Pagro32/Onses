@@ -1,7 +1,14 @@
 package de.hsfulda.onses.models;
 
+import java.beans.PropertyChangeSupport;
+
 public class Card {
-    private int id;
+
+    public final static String PROPERTY_COLOR = "color";
+    public final static String PROPERTY_VALUE = "value";
+
+    protected PropertyChangeSupport listeners;
+
     private Color color;
     private Value value;
 
@@ -12,23 +19,18 @@ public class Card {
         ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, DRAWTWO, SKIP, REVERSE, CHOOSE, CHOOSEDRAW;
     };
 
-    public Card setId(int id) {
-        this.id = id;
-        return this;
-    }
-
     public Card setColor(Color color) {
+        final Card.Color oldColor = this.color;
         this.color = color;
+        this.firePropertyChange(PROPERTY_COLOR, oldColor, color);
         return this;
     }
 
     public Card setValue(Value value) {
+        final Card.Value oldValue = this.value;
         this.value = value;
+        this.firePropertyChange(PROPERTY_VALUE, oldValue, value);
         return this;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public Color getColor() {
@@ -37,5 +39,20 @@ public class Card {
 
     public Value getValue() {
         return this.value;
+    }
+
+    public PropertyChangeSupport listeners() {
+        if(this.listeners == null) {
+            this.listeners = new PropertyChangeSupport(this);
+        }
+        return this.listeners;
+    }
+
+    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+        if (this.listeners != null) {
+            this.listeners.firePropertyChange(propertyName, oldValue, newValue);
+            return true;
+        }
+        return false;
     }
 }
