@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="690.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btnWishBlue" layoutX="891.0" layoutY="558.0" mnemonicParsing="false" style="-fx-background-color: blue; -fx-pref-width: 30px; -fx-pref-height: 30px;" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="280.0">
@@ -29,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1085.0" layoutY="586.0" mnemonicParsing="false" text="Play Card">
+      <Button fx:id="playCardBtn" layoutX="1085.0" layoutY="586.0" mnemonicParsing="false" text="Play Card">
          <font>
             <Font size="18.0" />
          </font>
