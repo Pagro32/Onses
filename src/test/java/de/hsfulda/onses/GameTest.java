@@ -5,6 +5,7 @@ import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.services.GameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
@@ -67,5 +68,17 @@ public class GameTest {
         boolean gameOver = gameService.getGame().getGameOver();
 
         assertFalse(gameOver);
+    }
+
+
+    @Test
+    @DisplayName("CheckForSetGameOver")
+    public void CheckForSetGameOver() {
+        GameService gameService = new GameService();
+
+        gameService.getGame().setGameOver(true);
+        boolean gameOver = gameService.getGame().getGameOver();
+
+        assertTrue(gameOver);
     }
 }
