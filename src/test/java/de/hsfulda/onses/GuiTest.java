@@ -22,4 +22,11 @@ public class GuiTest extends ApplicationTest {
     void checkWindowsTitle() {
         assertEquals("Onses - Uno", stage.getTitle());
     }
+
+    @Test
+    @DisplayName("Check if window Switch is working")
+    void checkSceneSwitch() {
+        clickOn("#startGameBtn");
+        assertEquals("Onses - Uno Game", stage.getTitle());
+    }
 }
