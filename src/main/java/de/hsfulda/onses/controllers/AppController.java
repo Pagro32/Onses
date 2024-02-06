@@ -28,7 +28,13 @@ public class AppController implements Controller {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/app.fxml")));
         Button button = (Button) parent.lookup("#startGameBtn");
 
-
+        button.setOnAction(e -> {
+            try {
+                stage.setScene(new Scene(gameController.render()));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         return parent;
     }
 }
