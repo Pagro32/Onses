@@ -2,8 +2,10 @@ package de.hsfulda.onses;
 
 import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Game;
+import de.hsfulda.onses.services.GameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
@@ -46,6 +48,7 @@ public class GameTest {
         assertEquals(game.getDrawCardDeck().getFirst(), answer1);
         assertEquals(game.getDrawCardDeck().get(1), answer2);
     }
+
     @Test
     @DisplayName("RelationshipGame_PlayerService")
     public void RelationshipGame_PlayerService() {
@@ -55,5 +58,27 @@ public class GameTest {
         Game answer = expected.getPlayerService().getGame();
         // assert
         assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("CheckForGetGameOver")
+    public void CheckForGetGameOver() {
+        GameService gameService = new GameService();
+
+        boolean gameOver = gameService.getGame().getGameOver();
+
+        assertFalse(gameOver);
+    }
+
+
+    @Test
+    @DisplayName("CheckForSetGameOver")
+    public void CheckForSetGameOver() {
+        GameService gameService = new GameService();
+
+        gameService.getGame().setGameOver(true);
+        boolean gameOver = gameService.getGame().getGameOver();
+
+        assertTrue(gameOver);
     }
 }
