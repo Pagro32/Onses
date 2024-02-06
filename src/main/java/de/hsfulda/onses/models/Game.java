@@ -10,6 +10,8 @@ public class Game {
     private GameService gameService;
     private PlayerService playerService;
 
+    private boolean gameOver;
+
     private final ArrayList<Card> drawCardDeck = new ArrayList<>();
 
     private Card lastPlayedCard = null;
@@ -55,5 +57,13 @@ public class Game {
     public Game()
     {
         this.playerService = new PlayerService().setGame(this);
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public boolean getGameOver() {
+        return gameOver;
     }
 }
