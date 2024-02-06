@@ -10,7 +10,7 @@ public class Game {
     private GameService gameService;
     private PlayerService playerService;
 
-    private boolean gameOver;
+    private boolean gameOver = false;
 
     private final ArrayList<Card> drawCardDeck = new ArrayList<>();
 

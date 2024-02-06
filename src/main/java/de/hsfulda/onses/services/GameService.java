@@ -108,10 +108,8 @@ public class GameService {
     }
 
     public void checkForWin() {
-        if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty()) {
-            System.out.println("Player wins");
-        } else if (this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
-            System.out.println("Bot wins");
+        if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty() || this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
+            this.game.setGameOver(true);
         }
     }
 
