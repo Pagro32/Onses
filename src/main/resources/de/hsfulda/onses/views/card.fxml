@@ -7,9 +7,9 @@
 
 <AnchorPane fx:id="cardPane" prefHeight="200.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="labelName" alignment="CENTER" layoutX="45.0" layoutY="91.0" text="1" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <Label fx:id="labelName" alignment="CENTER" layoutX="45.0" layoutY="91.0" text="1" textAlignment="CENTER" textFill="#da36d2" wrapText="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
    </children>
