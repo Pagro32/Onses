@@ -1,7 +1,6 @@
 package de.hsfulda.onses.controllers;
 
 import de.hsfulda.onses.Main;
-import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Game;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class AppController implements Controller {
