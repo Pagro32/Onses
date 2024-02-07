@@ -4,6 +4,7 @@ import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Game;
 import de.hsfulda.onses.models.Player;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class GameService {
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
+        this.game.getPlayerService().getPlayerList().getLast().setEnemy(true);
         fillDrawDeck();
         shuffleDeck();
         setFirstCard();
@@ -104,6 +106,21 @@ public class GameService {
                     game.changeLastPlayedCardColor(color);
                     break;
             }
+        }
+    }
+
+    public void playSeven() {
+        ArrayList<Card> übergangBot = new ArrayList<>(game.getPlayerService().getPlayerList().getLast().getPlayerDeck());
+        ArrayList<Card> übergangSpieler = new ArrayList<>(game.getPlayerService().getPlayerList().getFirst().getPlayerDeck());
+
+        game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().clear();
+        for (int i = 0; i < übergangBot.size(); i++) {
+            game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().add(übergangBot.get(i));
+        }
+
+        game.getPlayerService().getPlayerList().getLast().getPlayerDeck().clear();
+        for (int i = 0; i < übergangSpieler.size(); i++) {
+            game.getPlayerService().getPlayerList().getLast().getPlayerDeck().add(übergangSpieler.get(i));
         }
     }
 

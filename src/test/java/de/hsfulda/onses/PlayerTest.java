@@ -58,4 +58,42 @@ public class PlayerTest {
         assertEquals(expected, answer1);
         assertEquals(expected, answer2);
     }
+
+    @Test
+    @DisplayName("GivePlayerName")
+    public void GivePlayerName() {
+        Player player = new Player();
+        String expected = "Spieler";
+        player.setPlayerName(expected);
+        String answer = player.getPlayerName();
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("ChangePlayerName")
+    public void ChangePlayerName() {
+        PlayerService playerService = new PlayerService();
+        String name1 = "Name1";
+        String name2 = "Name2";
+        playerService.getPlayerList().getFirst().setPlayerName(name1);
+        playerService.getPlayerList().getFirst().setPlayerName(name2);
+        String answer = playerService.getPlayerList().getFirst().getPlayerName();
+        assertEquals(name2, answer);
+    }
+
+    @Test
+    @DisplayName("BotIsEnemy")
+    public void BotIsEnemy() {
+        Player player = new Player();
+        player.setEnemy(true);
+        assertTrue(player.isEnemy());
+    }
+    @Test
+    @DisplayName("CurrentCard")
+    public void CurrentCard() {
+        Player player = new Player();
+        Card card = new Card().setValue(Card.Value.ONE).setColor(Card.Color.GREEN);
+        player.setCurrentCard(card);
+        assertEquals(card, player.getCurrentCard());
+    }
 }
