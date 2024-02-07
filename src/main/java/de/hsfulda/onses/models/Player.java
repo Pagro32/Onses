@@ -12,6 +12,7 @@ public class Player {
 
     private PlayerService playerService;
     private Game game;
+    private String playerName;
     private final ArrayList<Card> playerDeck = new ArrayList<>();
 
     public ArrayList<Card> getPlayerDeck() {
@@ -39,6 +40,15 @@ public class Player {
 
     public Player setGame(Game game) {
         this.game = game;
+        return this;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public Player setPlayerName(String playerName) {
+        this.playerName = playerName;
         return this;
     }
 
