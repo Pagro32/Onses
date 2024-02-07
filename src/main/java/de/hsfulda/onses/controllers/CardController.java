@@ -2,6 +2,7 @@ package de.hsfulda.onses.controllers;
 
 import de.hsfulda.onses.Main;
 import de.hsfulda.onses.models.Card;
+import de.hsfulda.onses.models.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -12,10 +13,12 @@ import java.util.Objects;
 
 public class CardController implements Controller {
 
-    private Card card;
+    private final Card card;
+    private final Player player;
 
-    public CardController(Card card) {
+    public CardController(Card card, Player player) {
         this.card = card;
+        this.player = player;
     }
     @Override
     public Parent render() throws IOException {
@@ -52,6 +55,27 @@ public class CardController implements Controller {
                 case REVERSE -> cardName.setText("reverse");
             }
         }
+
+        if(player != null && !player.isEnemy()) {
+            mainPane.setOnMousePressed(e -> {
+                Card oldCard = player.getCurrentCard();
+                if(oldCard != null) {
+                    oldCard.setSelected(false);
+                }
+                player.setCurrentCard(card);
+                card.setSelected(true);
+            });
+        }
+
+        card.listeners().addPropertyChangeListener(Card.PROPERTY_SELECTED, e -> {
+            boolean oldValue = (boolean) e.getOldValue();
+            if(oldValue) {
+                mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-border-color: black"));
+            } else {
+                mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-border-color: pink"));
+            }
+
+        });
 
 
         return parent;

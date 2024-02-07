@@ -27,14 +27,14 @@ public class GameController implements Controller {
         final Pane playerPane = (Pane) parent.lookup("#playerPane");
         final Button playButton = (Button) parent.lookup("#playCardBtn");
 
-        CardController lastPlayedCardController = new CardController(game.getLastPlayedCard());
+        CardController lastPlayedCardController = new CardController(game.getLastPlayedCard(), null);
         PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
         PlayerController enemyController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getLast());
 
         game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, e -> {
             lastPlayedCardPane.getChildren().removeAll();
             try {
-                lastPlayedCardPane.getChildren().add(new CardController((Card) e.getNewValue()).render());
+                lastPlayedCardPane.getChildren().add(new CardController((Card) e.getNewValue(), null).render());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

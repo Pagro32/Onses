@@ -26,14 +26,14 @@ public class PlayerController implements Controller {
         final HBox cards = (HBox) parent.lookup("#cardsHBox");
 
         for(Card card : player.getPlayerDeck()) {
-            cards.getChildren().add(new CardController(card).render());
+            cards.getChildren().add(new CardController(card, player).render());
         }
 
         player.listeners().addPropertyChangeListener(Player.PROPERTY_PLAYER_DECK, e -> {
             cards.getChildren().clear();
             for(Card card : player.getPlayerDeck()) {
                 try {
-                    cards.getChildren().add(new CardController(card).render());
+                    cards.getChildren().add(new CardController(card, player).render());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
