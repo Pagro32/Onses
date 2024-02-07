@@ -484,4 +484,14 @@ public class GameServiceTest {
             assertTrue(gameService.getGame().getDrawCardDeck().get(i).isFacedown());
         }
     }
+
+    @Test
+    @DisplayName("CheckIfCardsInPlayerDeckAreFaceUp")
+    public void CheckIfCardsInPlayerDeckAreFaceUp() {
+        GameService gameService = new GameService();
+
+        for (int i = 0; i < gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size(); i++) {
+            assertFalse(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().get(i).isFacedown());
+        }
+    }
 }
