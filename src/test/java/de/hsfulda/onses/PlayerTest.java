@@ -58,4 +58,14 @@ public class PlayerTest {
         assertEquals(expected, answer1);
         assertEquals(expected, answer2);
     }
+
+    @Test
+    @DisplayName("GivePlayerName")
+    public void getPlayerName() {
+        Player player = new Player();
+        String expected = "Spieler";
+        player.setPlayerName(expected);
+        String answer = player.getPlayerName();
+        assertEquals(expected, answer);
+    }
 }
