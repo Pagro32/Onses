@@ -24,6 +24,12 @@ public class Player {
         this.firePropertyChange(PROPERTY_PLAYER_DECK, oldplayerDeck, playerDeck);
     }
 
+    public void removeCardFromPlayerDeck(Card card) {
+        final ArrayList<Card> oldPlayerDeck = new ArrayList<>(this.playerDeck);
+        this.playerDeck.remove(card);
+        this.firePropertyChange(PROPERTY_PLAYER_DECK, oldPlayerDeck, playerDeck);
+    }
+
     public PlayerService getPlayerService() {
         return playerService;
     }
