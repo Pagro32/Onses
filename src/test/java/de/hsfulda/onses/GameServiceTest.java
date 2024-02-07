@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import com.sun.jdi.ArrayReference;
 import de.hsfulda.onses.models.Game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Player;
 import de.hsfulda.onses.services.GameService;
+
+import java.util.ArrayList;
 
 public class GameServiceTest {
     @Test
@@ -473,5 +476,15 @@ public class GameServiceTest {
         boolean answer = gameService.getGame().getLastPlayedCard() != card;
 
         assertTrue(answer);
+    }
+
+    @Test
+    @DisplayName("PlaySevenPlayerDeckIsNowBotDeck")
+    public void PlaySevenPlayerDeckIsNowBotDeck() {
+        GameService gameService = new GameService();
+        ArrayList<Card> botDeck = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck());
+        gameService.playSeven();
+        ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck());
+        assertEquals(botDeck, answer);
     }
 }
