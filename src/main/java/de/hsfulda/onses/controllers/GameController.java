@@ -23,9 +23,13 @@ public class GameController implements Controller {
     public Parent render() throws IOException {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/game.fxml")));
         final Pane lastPlayedCardPane = (Pane) parent.lookup("#lastPlayedCardPane");
-
+        final Pane enemyPane = (Pane) parent.lookup("#enemyPane");
+        final Pane playerPane = (Pane) parent.lookup("#playerPane");
         final Button playButton = (Button) parent.lookup("#playCardBtn");
+
         CardController lastPlayedCardController = new CardController(new Card().setValue(Card.Value.FIVE).setColor(Card.Color.BLUE));
+        PlayerController playerController = new PlayerController();
+        PlayerController enemyController = new PlayerController();
 
         game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, e -> {
             lastPlayedCardPane.getChildren().removeAll();
@@ -42,6 +46,8 @@ public class GameController implements Controller {
 
 
         lastPlayedCardPane.getChildren().add(lastPlayedCardController.render());
+        playerPane.getChildren().add(playerController.render());
+        enemyPane.getChildren().add(enemyController.render());
 
         return parent;
     }
