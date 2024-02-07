@@ -80,4 +80,12 @@ public class PlayerTest {
         String answer = playerService.getPlayerList().getFirst().getPlayerName();
         assertEquals(name2, answer);
     }
+
+    @Test
+    @DisplayName("BotIsEnemy")
+    public void BotIsEnemy() {
+        Player player = new Player();
+        player.setEnemy(true);
+        assertTrue(player.isEnemy());
+    }
 }
