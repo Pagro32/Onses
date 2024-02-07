@@ -61,11 +61,23 @@ public class PlayerTest {
 
     @Test
     @DisplayName("GivePlayerName")
-    public void getPlayerName() {
+    public void GivePlayerName() {
         Player player = new Player();
         String expected = "Spieler";
         player.setPlayerName(expected);
         String answer = player.getPlayerName();
         assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("ChangePlayerName")
+    public void ChangePlayerName() {
+        PlayerService playerService = new PlayerService();
+        String name1 = "Name1";
+        String name2 = "Name2";
+        playerService.getPlayerList().getFirst().setPlayerName(name1);
+        playerService.getPlayerList().getFirst().setPlayerName(name2);
+        String answer = playerService.getPlayerList().getFirst().getPlayerName();
+        assertEquals(name2, answer);
     }
 }
