@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import de.hsfulda.onses.services.GameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,6 +63,16 @@ public class CardTest {
         Card testcard = new Card().setColor(Card.Color.BLACK).setValue(value);
         Card.Value answer = testcard.getValue();
         // assert
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    @DisplayName("facedownGetter")
+    public void facedownGetter() {
+        Card card = new Card();
+        boolean answer = card.isFacedown();
+        boolean expected = false;
+
         assertEquals(expected, answer);
     }
 
