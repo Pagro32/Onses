@@ -5,14 +5,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="220.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="playerNameLabel" layoutX="14.0" layoutY="14.0" text="Player Name" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
+      <Label fx:id="playerNameLabel" layoutX="14.0" layoutY="14.0" text="Player Name" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="1.0">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Pane fx:id="cardsPane" layoutX="16.0" layoutY="28.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0" />
+      <Pane fx:id="cardsPane" layoutX="7.0" layoutY="28.0" prefHeight="200.0" prefWidth="935.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>
