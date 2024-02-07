@@ -27,7 +27,7 @@ public class GameController implements Controller {
         final Pane playerPane = (Pane) parent.lookup("#playerPane");
         final Button playButton = (Button) parent.lookup("#playCardBtn");
 
-        CardController lastPlayedCardController = new CardController(new Card().setValue(Card.Value.FIVE).setColor(Card.Color.BLUE));
+        CardController lastPlayedCardController = new CardController(game.getLastPlayedCard());
         PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
         PlayerController enemyController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getLast());
 
