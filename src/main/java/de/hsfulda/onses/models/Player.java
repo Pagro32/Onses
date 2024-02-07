@@ -13,6 +13,7 @@ public class Player {
     private PlayerService playerService;
     private Game game;
     private String playerName;
+    private boolean enemy;
     private final ArrayList<Card> playerDeck = new ArrayList<>();
 
     public ArrayList<Card> getPlayerDeck() {
@@ -49,6 +50,15 @@ public class Player {
 
     public Player setPlayerName(String playerName) {
         this.playerName = playerName;
+        return this;
+    }
+
+    public boolean isEnemy() {
+        return enemy;
+    }
+
+    public Player setEnemy(boolean enemy) {
+        this.enemy = enemy;
         return this;
     }
 
