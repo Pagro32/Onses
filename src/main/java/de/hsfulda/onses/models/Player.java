@@ -14,6 +14,7 @@ public class Player {
     private Game game;
     private String playerName;
     private boolean enemy;
+    private Card currentCard;
     private final ArrayList<Card> playerDeck = new ArrayList<>();
 
     public ArrayList<Card> getPlayerDeck() {
@@ -59,6 +60,15 @@ public class Player {
 
     public Player setEnemy(boolean enemy) {
         this.enemy = enemy;
+        return this;
+    }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
+
+    public Player setCurrentCard(Card currentCard) {
+        this.currentCard = currentCard;
         return this;
     }
 
