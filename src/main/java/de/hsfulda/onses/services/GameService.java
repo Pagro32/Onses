@@ -24,6 +24,7 @@ public class GameService {
     public GameService(Game game) {
         this.game = game;
         this.game.setGameService(this);
+        this.game.getPlayerService().getPlayerList().getLast().setEnemy(true);
         fillDrawDeck();
         shuffleDeck();
         setFirstCard();
