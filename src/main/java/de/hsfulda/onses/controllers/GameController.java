@@ -28,8 +28,8 @@ public class GameController implements Controller {
         final Button playButton = (Button) parent.lookup("#playCardBtn");
 
         CardController lastPlayedCardController = new CardController(new Card().setValue(Card.Value.FIVE).setColor(Card.Color.BLUE));
-        PlayerController playerController = new PlayerController();
-        PlayerController enemyController = new PlayerController();
+        PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
+        PlayerController enemyController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getLast());
 
         game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, e -> {
             lastPlayedCardPane.getChildren().removeAll();
