@@ -497,4 +497,13 @@ public class GameServiceTest {
         ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck());
         assertEquals(playerDeck, answer);
     }
+
+    @Test
+    @DisplayName("BotisEnemy")
+    public void botIsEnemy() {
+        GameService gameService = new GameService();
+        boolean answer = gameService.getGame().getPlayerService().getPlayerList().getLast().isEnemy();
+        boolean expected = true;
+        assertEquals(expected, answer);
+    }
 }
