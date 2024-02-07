@@ -487,4 +487,14 @@ public class GameServiceTest {
         ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck());
         assertEquals(botDeck, answer);
     }
+
+    @Test
+    @DisplayName("PlaySevenBotDeckIsNowPlayerDeck")
+    public void PlaySevenBotDeckIsNowPlayerDeck() {
+        GameService gameService = new GameService();
+        ArrayList<Card> playerDeck = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck());
+        gameService.playSeven();
+        ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck());
+        assertEquals(playerDeck, answer);
+    }
 }
