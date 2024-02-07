@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Player {
     public final static String PROPERTY_PLAYER_DECK = "playerDeck";
+    public final static String PROPERTY_CURRENT_CARD = "currentCard";
 
     protected PropertyChangeSupport listeners;
 
@@ -74,7 +75,9 @@ public class Player {
     }
 
     public Player setCurrentCard(Card currentCard) {
+        final Card oldCard = this.currentCard;
         this.currentCard = currentCard;
+        this.firePropertyChange(PROPERTY_CURRENT_CARD, oldCard, currentCard);
         return this;
     }
 
