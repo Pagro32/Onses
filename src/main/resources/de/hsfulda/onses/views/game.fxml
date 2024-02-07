@@ -33,8 +33,8 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Pane fx:id="playerPane" layoutX="18.0" layoutY="460.0" prefHeight="220.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" />
-      <Pane fx:id="enemyPane" layoutX="18.0" layoutY="14.0" prefHeight="220.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="10.0" />
+      <Pane fx:id="playerPane" layoutX="18.0" layoutY="460.0" prefHeight="228.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" />
+      <Pane fx:id="enemyPane" layoutX="18.0" layoutY="14.0" prefHeight="228.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="10.0" />
       <Pane fx:id="lastPlayedCardPane" layoutX="112.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="130.0" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="245.0" />
       <Button layoutX="404.0" layoutY="329.0" mnemonicParsing="false" text="Draw Card" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="329.0">
          <font>
