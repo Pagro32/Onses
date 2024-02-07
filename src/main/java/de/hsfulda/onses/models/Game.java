@@ -31,7 +31,7 @@ public class Game {
     }
     public Game setLastPlayedCard(Card lastPlayedCard) {
         final Card oldLastPlayedCard = this.lastPlayedCard;
-        this.lastPlayedCard = lastPlayedCard;
+        this.lastPlayedCard = lastPlayedCard.setFacedown(false);
         this.firePropertyChange(PROPERTY_LAST_PLAYED_CARD, oldLastPlayedCard, lastPlayedCard);
         return this;
     }
@@ -42,7 +42,7 @@ public class Game {
 
     public void addCardToDrawCardDeck(Card card) {
         final ArrayList<Card> oldCards = new ArrayList<>(this.drawCardDeck);
-        drawCardDeck.add(card);
+        drawCardDeck.add(card.setFacedown(true));
         this.firePropertyChange(PROPERTY_DRAW_CARD_DECK, oldCards, drawCardDeck);
     }
 
