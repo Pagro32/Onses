@@ -479,6 +479,65 @@ public class GameServiceTest {
     }
 
     @Test
+    @DisplayName("CheckIfCardsInDrawCardDeckAreFaceDown")
+    public void CheckIfCardsInDrawCardDeckAreFaceDown() {
+        GameService gameService = new GameService();
+
+        for (int i = 0; i < gameService.getGame().getDrawCardDeck().size(); i++) {
+            assertTrue(gameService.getGame().getDrawCardDeck().get(i).isFacedown());
+        }
+    }
+
+    @Test
+    @DisplayName("CheckIfCardsInPlayerDeckAreFaceUp")
+    public void CheckIfCardsInPlayerDeckAreFaceUp() {
+        GameService gameService = new GameService();
+
+        for (int i = 0; i < gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().size(); i++) {
+            assertFalse(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().get(i).isFacedown());
+        }
+    }
+
+    @Test
+    @DisplayName("CheckIfCardsInBotDeckAreFaceDown")
+    public void CheckIfCardsInBotDeckAreFaceDown() {
+        GameService gameService = new GameService();
+
+        for (int i = 0; i < gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().size(); i++) {
+            assertTrue(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().get(i).isFacedown());
+        }
+    }
+
+    @Test
+    @DisplayName("CheckIfCardsPlayedByBotWillTurnFaceUp")
+    public void CheckIfCardsPlayedByBotWillTurnFaceUp() {
+        GameService gameService = new GameService();
+
+        Card card = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FOUR).setFacedown(true);
+
+        gameService.getGame().getPlayerService().setCurrentTurn(false);
+        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FIVE));
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().clear();
+        gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().add(card);
+
+        gameService.getGame().getPlayerService().botMove();
+
+        assertFalse(gameService.getGame().getLastPlayedCard().isFacedown());
+    }
+
+    @Test
+    @DisplayName("CheckIfCardsMovedToDrawCardDeckWillBeFaceDown")
+    public void CheckIfCardsMovedToDrawCardDeckWillBeFaceDown() {
+        GameService gameService = new GameService();
+
+        Card card = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FOUR);
+
+        gameService.getGame().setLastPlayedCard(card);
+        gameService.addLastPlayedCardToDrawCardDeck();
+
+        assertTrue(gameService.getGame().getDrawCardDeck().getLast().isFacedown());
+    }
+
     @DisplayName("PlaySevenPlayerDeckIsNowBotDeck")
     public void PlaySevenPlayerDeckIsNowBotDeck() {
         GameService gameService = new GameService();

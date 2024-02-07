@@ -45,14 +45,16 @@ public class GameService {
 
     public void drawCard(int amount) {
         if (!game.getDrawCardDeck().isEmpty()) {
+            boolean isFaceDown = false;
             Player player = null;
             if (game.getPlayerService().getCurrentTurn()) {
                 player = game.getPlayerService().getPlayerList().getFirst();
             } else {
+                isFaceDown = true;
                 player = game.getPlayerService().getPlayerList().getLast();
             }
             for (int i = 0; i < amount; i++) {
-                player.getPlayerDeck().add(game.getDrawCardDeck().getFirst());
+                player.getPlayerDeck().add(game.getDrawCardDeck().getFirst().setFacedown(isFaceDown));
                 game.getDrawCardDeck().removeFirst();
             }
             if (amount == 1 && !player.getPlayerDeck().isEmpty()) {
@@ -75,7 +77,7 @@ public class GameService {
         if (lastCard.getValue() == Card.Value.CHOOSE || lastCard.getValue() == Card.Value.CHOOSEDRAW) {
             lastCard.setColor(Card.Color.BLACK);
         }
-        game.addCardToDrawCardDeck(lastCard);
+        game.addCardToDrawCardDeck(lastCard.setFacedown(true));
     }
 
     public void chooseColor() {
@@ -184,15 +186,15 @@ public class GameService {
         for (Card.Color i : Card.Color.values()) {
             for (Card.Value j : Card.Value.values()) {
                 if (i != Card.Color.BLACK && j != Card.Value.CHOOSE && j != Card.Value.CHOOSEDRAW) {
-                    game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j));
-                    game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j));
+                    game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j).setFacedown(true));
+                    game.addCardToDrawCardDeck(new Card().setColor(i).setValue(j).setFacedown(true));
                 }
             }
         }
 
         for (int i = 0; i != 4; i++) {
-            game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE));
-            game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSEDRAW));
+            game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE).setFacedown(true));
+            game.addCardToDrawCardDeck(new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSEDRAW).setFacedown(true));
         }
     }
 
