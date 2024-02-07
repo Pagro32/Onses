@@ -11,6 +11,7 @@ public class Card {
 
     private Color color;
     private Value value;
+    private boolean facedown = false;
 
     public enum Color {
         RED, BLUE, GREEN, YELLOW, BLACK;
@@ -39,6 +40,15 @@ public class Card {
 
     public Value getValue() {
         return this.value;
+    }
+
+    public boolean isFacedown() {
+        return facedown;
+    }
+
+    public Card setFacedown(boolean facedown) {
+        this.facedown = facedown;
+        return this;
     }
 
     public PropertyChangeSupport listeners() {
