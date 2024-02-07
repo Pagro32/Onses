@@ -88,4 +88,12 @@ public class PlayerTest {
         player.setEnemy(true);
         assertTrue(player.isEnemy());
     }
+    @Test
+    @DisplayName("CurrentCard")
+    public void CurrentCard() {
+        Player player = new Player();
+        Card card = new Card().setValue(Card.Value.ONE).setColor(Card.Color.GREEN);
+        player.setCurrentCard(card);
+        assertEquals(card, player.getCurrentCard());
+    }
 }
