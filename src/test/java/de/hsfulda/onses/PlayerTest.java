@@ -60,6 +60,23 @@ public class PlayerTest {
     }
 
     @Test
+    @DisplayName("remove card from player card deck")
+    void removeCardFromPlayerCardDeck() {
+        Player player = new Player();
+        Card card1 = new Card().setColor(Card.Color.RED).setValue(Card.Value.FIVE);
+        Card card2 = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.ONE);
+
+        player.addCardToPlayerDeck(card1);
+        player.addCardToPlayerDeck(card2);
+
+        assertEquals(2, player.getPlayerDeck().size());
+
+        player.removeCardFromPlayerDeck(card1);
+        assertEquals(1, player.getPlayerDeck().size());
+        assertEquals(card2, player.getPlayerDeck().getFirst());
+    }
+
+    @Test
     @DisplayName("GivePlayerName")
     public void GivePlayerName() {
         Player player = new Player();
@@ -88,6 +105,7 @@ public class PlayerTest {
         player.setEnemy(true);
         assertTrue(player.isEnemy());
     }
+    
     @Test
     @DisplayName("CurrentCard")
     public void CurrentCard() {
