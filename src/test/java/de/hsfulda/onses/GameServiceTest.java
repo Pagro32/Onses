@@ -1,6 +1,7 @@
 
 package de.hsfulda.onses;
 
+import com.sun.jdi.ArrayReference;
 import de.hsfulda.onses.models.Game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Player;
 import de.hsfulda.onses.services.GameService;
+
+import java.util.ArrayList;
 
 public class GameServiceTest {
     @Test
@@ -533,5 +536,33 @@ public class GameServiceTest {
         gameService.addLastPlayedCardToDrawCardDeck();
 
         assertTrue(gameService.getGame().getDrawCardDeck().getLast().isFacedown());
+    }
+
+    @DisplayName("PlaySevenPlayerDeckIsNowBotDeck")
+    public void PlaySevenPlayerDeckIsNowBotDeck() {
+        GameService gameService = new GameService();
+        ArrayList<Card> botDeck = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck());
+        gameService.playSeven();
+        ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck());
+        assertEquals(botDeck, answer);
+    }
+
+    @Test
+    @DisplayName("PlaySevenBotDeckIsNowPlayerDeck")
+    public void PlaySevenBotDeckIsNowPlayerDeck() {
+        GameService gameService = new GameService();
+        ArrayList<Card> playerDeck = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck());
+        gameService.playSeven();
+        ArrayList<Card> answer = new ArrayList<>(gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck());
+        assertEquals(playerDeck, answer);
+    }
+
+    @Test
+    @DisplayName("BotisEnemy")
+    public void botIsEnemy() {
+        GameService gameService = new GameService();
+        boolean answer = gameService.getGame().getPlayerService().getPlayerList().getLast().isEnemy();
+        boolean expected = true;
+        assertEquals(expected, answer);
     }
 }

@@ -12,6 +12,9 @@ public class Player {
 
     private PlayerService playerService;
     private Game game;
+    private String playerName;
+    private boolean enemy;
+    private Card currentCard;
     private final ArrayList<Card> playerDeck = new ArrayList<>();
 
     public ArrayList<Card> getPlayerDeck() {
@@ -22,6 +25,12 @@ public class Player {
         final ArrayList<Card> oldplayerDeck = new ArrayList<>(this.playerDeck);
         playerDeck.add(card);
         this.firePropertyChange(PROPERTY_PLAYER_DECK, oldplayerDeck, playerDeck);
+    }
+
+    public void removeCardFromPlayerDeck(Card card) {
+        final ArrayList<Card> oldPlayerDeck = new ArrayList<>(this.playerDeck);
+        this.playerDeck.remove(card);
+        this.firePropertyChange(PROPERTY_PLAYER_DECK, oldPlayerDeck, playerDeck);
     }
 
     public PlayerService getPlayerService() {
@@ -39,6 +48,33 @@ public class Player {
 
     public Player setGame(Game game) {
         this.game = game;
+        return this;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public Player setPlayerName(String playerName) {
+        this.playerName = playerName;
+        return this;
+    }
+
+    public boolean isEnemy() {
+        return enemy;
+    }
+
+    public Player setEnemy(boolean enemy) {
+        this.enemy = enemy;
+        return this;
+    }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
+
+    public Player setCurrentCard(Card currentCard) {
+        this.currentCard = currentCard;
         return this;
     }
 
