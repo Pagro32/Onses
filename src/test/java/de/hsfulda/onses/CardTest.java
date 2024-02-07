@@ -76,4 +76,15 @@ public class CardTest {
         assertEquals(expected, answer);
     }
 
+    @Test
+    @DisplayName("facedownSetter")
+    public void faceDownSetter() {
+        Card card = new Card();
+        card.setFacedown(true);
+        boolean answer = card.isFacedown();
+        boolean expected = true;
+        assertEquals(expected, answer);
+
+    }
+
 }
