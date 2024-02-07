@@ -521,4 +521,17 @@ public class GameServiceTest {
 
         assertFalse(gameService.getGame().getLastPlayedCard().isFacedown());
     }
+
+    @Test
+    @DisplayName("CheckIfCardsMovedToDrawCardDeckWillBeFaceDown")
+    public void CheckIfCardsMovedToDrawCardDeckWillBeFaceDown() {
+        GameService gameService = new GameService();
+
+        Card card = new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FOUR);
+
+        gameService.getGame().setLastPlayedCard(card);
+        gameService.addLastPlayedCardToDrawCardDeck();
+
+        assertTrue(gameService.getGame().getDrawCardDeck().getLast().isFacedown());
+    }
 }
