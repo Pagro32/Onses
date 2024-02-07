@@ -87,4 +87,14 @@ public class CardTest {
 
     }
 
+    @Test
+    @DisplayName("test if card is selected")
+    void testIfCardIsSelected() {
+        Card card = new Card().setSelected(true);
+
+        assertTrue(card.isSelected());
+        card.setSelected(false);
+        assertFalse(card.isSelected());
+    }
+
 }
