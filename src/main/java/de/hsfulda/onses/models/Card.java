@@ -11,7 +11,7 @@ public class Card {
 
     private Color color;
     private Value value;
-    private boolean facedown;
+    private boolean facedown = false;
 
     public enum Color {
         RED, BLUE, GREEN, YELLOW, BLACK;
