@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="585.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="456.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="473.0" layoutY="121.0" text="Uno Game" AnchorPane.leftAnchor="473.0" AnchorPane.topAnchor="121.0">
+      <Label layoutX="252.0" layoutY="96.0" text="Uno Game" AnchorPane.leftAnchor="252.0" AnchorPane.topAnchor="96.0">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Button fx:id="startGameBtn" layoutX="495.0" layoutY="275.0" mnemonicParsing="false" text="Start Game" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="275.0">
+      <Button fx:id="startGameBtn" layoutX="274.0" layoutY="257.0" mnemonicParsing="false" text="Start Game" AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="257.0">
          <font>
             <Font size="19.0" />
          </font>
