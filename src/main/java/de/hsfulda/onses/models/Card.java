@@ -7,11 +7,14 @@ public class Card {
     public final static String PROPERTY_COLOR = "color";
     public final static String PROPERTY_VALUE = "value";
 
+    public final static String PROPERTY_SELECTED = "selected";
+
     protected PropertyChangeSupport listeners;
 
     private Color color;
     private Value value;
     private boolean facedown = false;
+    private boolean selected;
 
     public enum Color {
         RED, BLUE, GREEN, YELLOW, BLACK;
@@ -48,6 +51,17 @@ public class Card {
 
     public Card setFacedown(boolean facedown) {
         this.facedown = facedown;
+        return this;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public Card setSelected(boolean selected) {
+        final boolean oldValue = this.selected;
+        this.selected = selected;
+        this.firePropertyChange(PROPERTY_SELECTED, oldValue, selected);
         return this;
     }
 
