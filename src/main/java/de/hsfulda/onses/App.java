@@ -20,8 +20,8 @@ public class App extends Application {
         this.stage = stage;
         final AppController appController = new AppController(this, new GameService());
 
-        stage.setTitle("Onses - Uno");
         stage.setScene(new Scene(new Label("Loading...")));
+        stage.setOnCloseRequest(e -> controller.destroy());
 
         show(appController);
         stage.show();

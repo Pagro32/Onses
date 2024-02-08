@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,10 +17,12 @@ public class PlayerController implements Controller {
 
     private final Player player;
     private final ArrayList<Controller> controllers = new ArrayList<>();
+    private PropertyChangeListener playerDeckChangeListener;
 
     public PlayerController(Player player) {
         this.player = player;
     }
+
     @Override
     public Parent render() throws IOException {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/player.fxml")));
@@ -32,7 +35,7 @@ public class PlayerController implements Controller {
             cards.getChildren().add(newCardController.render());
         }
 
-        player.listeners().addPropertyChangeListener(Player.PROPERTY_PLAYER_DECK, e -> {
+        playerDeckChangeListener = e -> {
             cards.getChildren().clear();
             for(Card card : player.getPlayerDeck()) {
                 try {
@@ -41,7 +44,8 @@ public class PlayerController implements Controller {
                     throw new RuntimeException(ex);
                 }
             }
-        });
+        };
+        player.listeners().addPropertyChangeListener(Player.PROPERTY_PLAYER_DECK, playerDeckChangeListener);
 
         playerNameLabel.setText(player.getPlayerName());
 
@@ -58,5 +62,6 @@ public class PlayerController implements Controller {
         for (Controller controller : controllers) {
             controller.destroy();
         }
+        player.listeners().removePropertyChangeListener(Player.PROPERTY_PLAYER_DECK, playerDeckChangeListener);
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -16,10 +17,13 @@ public class CardController implements Controller {
     private final Card card;
     private final Player player;
 
+    private PropertyChangeListener cardSelectedChangeListener;
+
     public CardController(Card card, Player player) {
         this.card = card;
         this.player = player;
     }
+
     @Override
     public Parent render() throws IOException {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/card.fxml")));
@@ -68,7 +72,7 @@ public class CardController implements Controller {
             });
         }
 
-        card.listeners().addPropertyChangeListener(Card.PROPERTY_SELECTED, e -> {
+        cardSelectedChangeListener = e -> {
             boolean oldValue = (boolean) e.getOldValue();
             if(oldValue) {
                 mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-border-color: black"));
@@ -76,8 +80,8 @@ public class CardController implements Controller {
                 mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-border-color: pink"));
             }
 
-        });
-
+        };
+        card.listeners().addPropertyChangeListener(Card.PROPERTY_SELECTED, cardSelectedChangeListener);
 
         return parent;
     }
@@ -93,6 +97,6 @@ public class CardController implements Controller {
 
     @Override
     public void destroy() {
-
+        card.listeners().removePropertyChangeListener(Card.PROPERTY_SELECTED, cardSelectedChangeListener);
     }
 }

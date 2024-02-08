@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -20,7 +20,7 @@ public class GameController implements Controller {
     private final Game game;
     private final App app;
 
-    private PropertyChangeEvent lastPlayedCardPropertyChangeEvent;
+    private PropertyChangeListener lastPlayedCardPropertyChangeListener;
 
     private final ArrayList<Controller> controllers = new ArrayList<>();
     public GameController(App app, GameService gameService) {
@@ -28,6 +28,7 @@ public class GameController implements Controller {
         this.gameService = gameService;
         this.game = gameService.getGame();
     }
+
     @Override
     public Parent render() throws IOException {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/game.fxml")));
@@ -46,7 +47,7 @@ public class GameController implements Controller {
         controllers.add(playerController);
         controllers.add(enemyController);
 
-        game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, e -> {
+        lastPlayedCardPropertyChangeListener = e -> {
             lastPlayedCardPane.getChildren().removeAll();
             try {
                 CardController tmp = new CardController((Card) e.getNewValue(), null);
@@ -55,7 +56,8 @@ public class GameController implements Controller {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-        });
+        };
+        game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
 
         exitGameButton.setOnAction(e -> {
             app.show(new AppController(app, new GameService()));
@@ -93,5 +95,6 @@ public class GameController implements Controller {
         for (Controller controller : controllers) {
             controller.destroy();
         }
+        game.listeners().removePropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
     }
 }
