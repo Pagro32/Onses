@@ -23,6 +23,7 @@ public class Player {
     }
 
     public void addCardToPlayerDeck(Card card) {
+        card.setPlayer(this);
         final ArrayList<Card> oldplayerDeck = new ArrayList<>(this.playerDeck);
         playerDeck.add(card);
         this.firePropertyChange(PROPERTY_PLAYER_DECK, oldplayerDeck, playerDeck);
