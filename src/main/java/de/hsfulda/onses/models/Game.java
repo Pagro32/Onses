@@ -10,6 +10,7 @@ public class Game {
 
     public final static String PROPERTY_LAST_PLAYED_CARD = "lastPlayedCard";
     public final static String PROPERTY_DRAW_CARD_DECK = "drawCardDeck";
+    public final static String PROPERTY_GAME_OVER = "gameOver";
 
     protected PropertyChangeSupport listeners;
 
@@ -70,7 +71,9 @@ public class Game {
     }
 
     public void setGameOver(boolean gameOver) {
+        final boolean oldValue = gameOver;
         this.gameOver = gameOver;
+        this.firePropertyChange(PROPERTY_GAME_OVER, oldValue, gameOver);
     }
 
     public boolean getGameOver() {

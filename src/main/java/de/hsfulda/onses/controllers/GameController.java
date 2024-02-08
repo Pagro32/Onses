@@ -21,6 +21,7 @@ public class GameController implements Controller {
     private final App app;
 
     private PropertyChangeListener lastPlayedCardPropertyChangeListener;
+    private PropertyChangeListener gameOverListener;
 
     private final ArrayList<Controller> controllers = new ArrayList<>();
     public GameController(App app, GameService gameService) {
@@ -59,6 +60,11 @@ public class GameController implements Controller {
         };
         game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
 
+        gameOverListener = e -> {
+            app.show(new GameOverController(app));
+        };
+        game.listeners().addPropertyChangeListener(Game.PROPERTY_GAME_OVER, gameOverListener);
+
         exitGameButton.setOnAction(e -> {
             app.show(new AppController(app, new GameService()));
         });
@@ -96,5 +102,6 @@ public class GameController implements Controller {
             controller.destroy();
         }
         game.listeners().removePropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
+        game.listeners().removePropertyChangeListener(Game.PROPERTY_GAME_OVER, gameOverListener);
     }
 }
