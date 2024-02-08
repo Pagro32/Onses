@@ -46,8 +46,8 @@ public class PlayerService {
     }
 
     public PlayerService() {
-        addPlayerToList(new Player().setPlayerService(this));
-        addPlayerToList(new Player().setPlayerService(this));
+        addPlayerToList(new Player().setPlayerService(this).setPlayerName("Player"));
+        addPlayerToList(new Player().setPlayerService(this).setPlayerName("Bot"));
     }
 
     public void removeCardFromPlayerDeck(Card card) {

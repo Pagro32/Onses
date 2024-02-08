@@ -40,7 +40,7 @@ public class PlayerController implements Controller {
             }
         });
 
-        playerNameLabel.setText("Test");
+        playerNameLabel.setText(player.getPlayerName());
 
         return parent;
     }
