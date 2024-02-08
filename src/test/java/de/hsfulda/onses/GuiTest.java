@@ -10,11 +10,13 @@ import static org.testfx.matcher.control.LabeledMatchers.*;
 
 public class GuiTest extends ApplicationTest {
     private Stage stage;
+    private App app;
 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        new App().start(stage);
+        app = new App();
+        app.start(stage);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package de.hsfulda.onses.controllers;
 
+import de.hsfulda.onses.App;
 import de.hsfulda.onses.Main;
 import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.models.Game;
@@ -9,16 +10,26 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class GameController implements Controller {
     private final GameService gameService;
     private final Game game;
-    public GameController(GameService gameService) {
+    private final App app;
+
+    private PropertyChangeListener lastPlayedCardPropertyChangeListener;
+    private PropertyChangeListener gameOverListener;
+
+    private final ArrayList<Controller> controllers = new ArrayList<>();
+    public GameController(App app, GameService gameService) {
+        this.app = app;
         this.gameService = gameService;
         this.game = gameService.getGame();
     }
+
     @Override
     public Parent render() throws IOException {
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/game.fxml")));
@@ -26,22 +37,79 @@ public class GameController implements Controller {
         final Pane enemyPane = (Pane) parent.lookup("#enemyPane");
         final Pane playerPane = (Pane) parent.lookup("#playerPane");
         final Button playButton = (Button) parent.lookup("#playCardBtn");
+        final Button drawCardButton = (Button) parent.lookup("#drawCardBtn");
+        final Button exitGameButton = (Button) parent.lookup("#exitBtn");
+        final Button wishRedButton = (Button) parent.lookup("#btnWishRed");
+        final Button wishBlueButton = (Button) parent.lookup("#btnWishBlue");
+        final Button wishGreenButton = (Button) parent.lookup("#btnWishGreen");
+        final Button wishYellowButton = (Button) parent.lookup("#btnWishYellow");
 
-        CardController lastPlayedCardController = new CardController(game.getLastPlayedCard());
+        CardController lastPlayedCardController = new CardController(game.getLastPlayedCard(), null);
         PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
         PlayerController enemyController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getLast());
 
-        game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, e -> {
+        controllers.add(lastPlayedCardController);
+        controllers.add(playerController);
+        controllers.add(enemyController);
+
+        wishRedButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.RED);
+        });
+
+        wishBlueButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.BLUE);
+        });
+
+        wishGreenButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.GREEN);
+        });
+
+        wishYellowButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.YELLOW);
+        });
+
+        lastPlayedCardPropertyChangeListener = e -> {
             lastPlayedCardPane.getChildren().removeAll();
             try {
-                lastPlayedCardPane.getChildren().add(new CardController((Card) e.getNewValue()).render());
+                CardController tmp = new CardController((Card) e.getNewValue(), null);
+                controllers.add(tmp);
+                lastPlayedCardPane.getChildren().add(tmp.render());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        };
+        game.listeners().addPropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
+
+        gameOverListener = e -> {
+            app.show(new GameOverController(app));
+        };
+        game.listeners().addPropertyChangeListener(Game.PROPERTY_GAME_OVER, gameOverListener);
+
+        exitGameButton.setOnAction(e -> {
+            app.show(new AppController(app, new GameService()));
         });
 
         playButton.setOnAction(e -> {
-            gameService.playCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.ONE));
+            Card cardToPlay = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            if(cardToPlay.getValue().equals(Card.Value.CHOOSE) || cardToPlay.getValue().equals(Card.Value.CHOOSEDRAW)) {
+                if(!cardToPlay.getColor().equals(Card.Color.BLACK)) {
+                    if(cardToPlay.getPlayer() != null) {
+                        gameService.playCard(cardToPlay);
+                    }
+                }
+            } else if(gameService.legalMove(cardToPlay)){
+                if(cardToPlay.getPlayer() != null) {
+                    gameService.playCard(cardToPlay);
+                }
+            }
+        });
+
+        drawCardButton.setOnAction(e -> {
+            gameService.drawCard(1);
         });
 
 
@@ -50,5 +118,19 @@ public class GameController implements Controller {
         enemyPane.getChildren().add(enemyController.render());
 
         return parent;
+    }
+
+    @Override
+    public String getTitle() {
+        return "Onses - Uno Game";
+    }
+
+    @Override
+    public void destroy() {
+        for (Controller controller : controllers) {
+            controller.destroy();
+        }
+        game.listeners().removePropertyChangeListener(Game.PROPERTY_LAST_PLAYED_CARD, lastPlayedCardPropertyChangeListener);
+        game.listeners().removePropertyChangeListener(Game.PROPERTY_GAME_OVER, gameOverListener);
     }
 }

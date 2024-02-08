@@ -1,4 +1,3 @@
-
 package de.hsfulda.onses;
 
 import com.sun.jdi.ArrayReference;
@@ -120,37 +119,6 @@ public class GameServiceTest {
         assertEquals(expected, answer);
     }
 
-    @Test
-    @DisplayName("legalMoveColorBlack")
-    public void legalMoveColorBlack() {
-        // arrange
-        Card input = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSE);
-        boolean expected = true;
-        // act
-        GameService gameService = new GameService();
-        gameService.setTest(true);
-        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.YELLOW).setValue(Card.Value.THREE));
-
-        boolean answer = gameService.legalMove(input);
-        // assert
-        assertEquals(expected, answer);
-    }
-
-    @Test
-    @DisplayName("legalMoveColorBlackCHOOSEDRAW")
-    public void legalMoveColorBlackCHOOSEDRAW() {
-        // arrange
-        Card input = new Card().setColor(Card.Color.BLACK).setValue(Card.Value.CHOOSEDRAW);
-        boolean expected = true;
-        // act
-        GameService gameService = new GameService();
-        gameService.setTest(true);
-        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.FIVE));
-
-        boolean answer = gameService.legalMove(input);
-        // assert
-        assertEquals(expected, answer);
-    }
 
     @Test
     @DisplayName("ShuffelDeck")
@@ -226,41 +194,6 @@ public class GameServiceTest {
     }
 
     @Test
-    @DisplayName("ChooseTest")
-    public void ChooseTest() {
-        GameService gameService = new GameService();
-        gameService.setTest(true);
-        boolean expected = true;
-        boolean answer = false;
-
-        gameService.playCard(new Card().setValue(Card.Value.CHOOSE).setColor(Card.Color.BLACK));
-
-        if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
-            answer = true;
-        }
-
-        assertEquals(expected, answer);
-
-    }
-
-    @Test
-    @DisplayName("ChooseDrawTest")
-    public void ChooseDrawTest() {
-        GameService gameService = new GameService();
-        gameService.setTest(true);
-        boolean expected = true;
-        boolean answer = false;
-
-        gameService.playCard(new Card().setValue(Card.Value.CHOOSEDRAW).setColor(Card.Color.BLACK));
-
-        if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK) {
-            answer = true;
-        }
-
-        assertEquals(expected, answer);
-
-    }
-    @Test
     @DisplayName("DrawByChoiceForceKeep")
     public void DrawByChoiceForceKeep() {
 
@@ -321,26 +254,6 @@ public class GameServiceTest {
         int expected = 4;
         int answer = after - before;
         assertEquals(expected, answer);
-    }
-
-    @Test
-    @DisplayName("DrawByChoiceForcePlay")
-    public void DrawByChoiceForcePlay() {
-
-        GameService gameService = new GameService();
-        gameService.setTest(true);
-        Card input = new Card().setColor(Card.Color.RED).setValue(Card.Value.ONE);
-
-        gameService.getGame().getDrawCardDeck().clear();
-        gameService.getGame().getPlayerService().setCurrentTurn(true);
-        gameService.getGame().setLastPlayedCard(new Card().setColor(Card.Color.RED).setValue(Card.Value.SEVEN));
-        gameService.getGame().addCardToDrawCardDeck(input);
-        gameService.getGame().getPlayerService().getPlayerList().getFirst().addCardToPlayerDeck(new Card().setColor(Card.Color.BLUE).setValue(Card.Value.TWO));
-        gameService.drawCard(1);
-
-        Card answer = gameService.getGame().getPlayerService().getPlayerList().getFirst().getPlayerDeck().getLast();
-
-        assertNotEquals(input, answer);
     }
 
     @Test
@@ -436,7 +349,7 @@ public class GameServiceTest {
         gameService.getGame().getPlayerService().getPlayerList().getLast().getPlayerDeck().add(card);
 
         gameService.getGame().getPlayerService().setCurrentTurn(false);
-        gameService.playCard(card);
+        gameService.getGame().getPlayerService().botMove();
 
         if (gameService.getGame().getLastPlayedCard().getColor() != Card.Color.BLACK){
             answer = true;

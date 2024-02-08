@@ -54,20 +54,16 @@ public class GameService {
                 player = game.getPlayerService().getPlayerList().getLast();
             }
             for (int i = 0; i < amount; i++) {
-                player.getPlayerDeck().add(game.getDrawCardDeck().getFirst().setFacedown(isFaceDown));
+                Card newCard = game.getDrawCardDeck().getFirst().setFacedown(isFaceDown).setPlayer(player);
+                player.addCardToPlayerDeck(newCard);
                 game.getDrawCardDeck().removeFirst();
             }
             if (amount == 1 && !player.getPlayerDeck().isEmpty()) {
-                Card drawnCard = player.getPlayerDeck().getLast();
-
-                if (legalMove(drawnCard)) {
-                    player.getPlayerService().removeCardFromPlayerDeck(drawnCard);
-                    playCard(drawnCard);
-                }
-                else nextPlayer();
+                nextPlayer();
+                if (!game.getPlayerService().getCurrentTurn()) game.getPlayerService().botMove();
             }
         }
-        if (amount != 1) {
+        if (amount == 7) {
             nextPlayer();
         }
     }
@@ -82,32 +78,9 @@ public class GameService {
 
     public void chooseColor() {
         // Abfrage Farbe
-        Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
-        game.changeLastPlayedCardColor(color);
-
-        if (!game.getPlayerService().getCurrentTurn()){
-            int min = 0;
-            int max = 3;
-            Random rand = new Random();
-            int randomNum = rand.nextInt((max - min) + 1) + min;
-            switch (randomNum){
-                case 0:
-                    color = Card.Color.BLUE;
-                    game.changeLastPlayedCardColor(color);
-                    break;
-                case 1:
-                    color = Card.Color.RED;
-                    game.changeLastPlayedCardColor(color);
-                    break;
-                case 2:
-                    color = Card.Color.YELLOW;
-                    game.changeLastPlayedCardColor(color);
-                    break;
-                case 3:
-                    color = Card.Color.GREEN;
-                    game.changeLastPlayedCardColor(color);
-                    break;
-            }
+        if (game.getPlayerService().getCurrentTurn()) {
+            Card.Color color = Card.Color.BLUE; //Vorübergehend Blau
+            game.changeLastPlayedCardColor(color);
         }
     }
 
@@ -133,6 +106,9 @@ public class GameService {
     }
 
     public void playCard(Card card) {
+        if(card.getPlayer() != null) {
+            card.getPlayer().removeCardFromPlayerDeck(card);
+        }
         // add lastPlayedCard back to drawCardDeck
         this.addLastPlayedCardToDrawCardDeck();
         game.setLastPlayedCard(card);
@@ -145,11 +121,11 @@ public class GameService {
                 nextPlayer();
                 break;
             case CHOOSE:
-                chooseColor();
+                //chooseColor();
                 nextPlayer();
                 break;
             case CHOOSEDRAW:
-                chooseColor();
+                //chooseColor();
                 nextPlayer();
                 drawCard(4);
                 break;
@@ -176,8 +152,6 @@ public class GameService {
         if (card.getColor() == lastCard.getColor()) legalMoveFound = true; // same color
 
         if (card.getValue() == lastCard.getValue()) legalMoveFound = true; // same value
-
-        if (card.getColor() == Card.Color.BLACK) legalMoveFound = true; // Color Black
 
         return legalMoveFound;
     }

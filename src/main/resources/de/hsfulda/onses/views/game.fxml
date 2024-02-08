@@ -13,12 +13,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnWishRed" layoutX="1160.0" layoutY="507.0" mnemonicParsing="false" style="-fx-background-color: red; -fx-pref-width: 30px; -fx-pref-height: 30px; -fx-cursor: pointer;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="64.0">
+      <Button fx:id="btnWishRed" layoutX="1160.0" layoutY="507.0" mnemonicParsing="false" style="-fx-background-color: red; -fx-pref-width: 30px; -fx-pref-height: 30px;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="64.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnWishGreen" layoutX="1160.0" layoutY="549.0" mnemonicParsing="false" style="-fx-background-color: green; -fx-pref-width: 30px; -fx-pref-height: 30px; -fx-cursor: pointer;" AnchorPane.bottomAnchor="111.0" AnchorPane.rightAnchor="64.0">
+      <Button fx:id="btnWishGreen" layoutX="1160.0" layoutY="549.0" mnemonicParsing="false" style="-fx-background-color: green; -fx-pref-width: 30px; -fx-pref-height: 30px;" AnchorPane.bottomAnchor="111.0" AnchorPane.rightAnchor="64.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -36,9 +36,14 @@
       <Pane fx:id="playerPane" layoutX="18.0" layoutY="460.0" prefHeight="228.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" />
       <Pane fx:id="enemyPane" layoutX="18.0" layoutY="14.0" prefHeight="228.0" prefWidth="950.0" style="-fx-border-color: red;" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="10.0" />
       <Pane fx:id="lastPlayedCardPane" layoutX="112.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="130.0" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="245.0" />
-      <Button layoutX="404.0" layoutY="329.0" mnemonicParsing="false" text="Draw Card" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="329.0">
+      <Button fx:id="drawCardBtn" layoutX="404.0" layoutY="329.0" mnemonicParsing="false" text="Draw Card" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="329.0">
          <font>
             <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitBtn" layoutX="1048.0" layoutY="53.0" mnemonicParsing="false" text="return to menu" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="53.0">
+         <font>
+            <Font size="16.0" />
          </font>
       </Button>
    </children>
