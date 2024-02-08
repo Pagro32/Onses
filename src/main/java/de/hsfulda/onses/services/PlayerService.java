@@ -6,6 +6,7 @@ import de.hsfulda.onses.models.Card;
 import de.hsfulda.onses.services.GameService;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayerService {
 
@@ -66,11 +67,32 @@ public class PlayerService {
             if (getGame().getGameService().legalMove(this.playerList.getLast().getPlayerDeck().get(i))) {
                 Card playCard = this.playerList.getLast().getPlayerDeck().get(i);
                 this.removeCardFromPlayerDeck(playCard);
+                if (playCard.getValue() == Card.Value.CHOOSE || playCard.getValue() == Card.Value.CHOOSEDRAW)
+                {
+                    int min = 0;
+                    int max = 3;
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((max - min) + 1) + min;
+                    switch (randomNum){
+                        case 0:
+                            playCard.setColor(Card.Color.BLUE);
+                            break;
+                        case 1:
+                            playCard.setColor(Card.Color.RED);
+                            break;
+                        case 2:
+                            playCard.setColor(Card.Color.YELLOW);
+                            break;
+                        case 3:
+                            playCard.setColor(Card.Color.GREEN);
+                            break;
+                    }
+                }
                 getGame().getGameService().playCard(playCard);
                 break;
             }
         }
-        if (lastPlayedCard == game.getLastPlayedCard()) {
+        if (lastPlayedCard == game.getLastPlayedCard() && !playerList.getLast().getPlayerDeck().isEmpty()) {
             game.getGameService().drawCard(1);
         }
     }
