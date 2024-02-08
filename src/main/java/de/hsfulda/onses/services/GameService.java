@@ -101,10 +101,7 @@ public class GameService {
 
     public void checkForWin() {
         if (this.game.getPlayerService().getPlayerList().getFirst().getPlayerDeck().isEmpty() || this.game.getPlayerService().getPlayerList().getLast().getPlayerDeck().isEmpty()) {
-            System.out.println("gameOver");
-            System.out.println(game.getGameOver());
             this.game.setGameOver(true);
-            System.out.println(game.getGameOver());
         }
     }
 
