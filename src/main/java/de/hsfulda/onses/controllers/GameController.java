@@ -43,7 +43,6 @@ public class GameController implements Controller {
         playButton.setOnAction(e -> {
             Card cardToPlay = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
             if(gameService.legalMove(cardToPlay)) {
-                System.out.println(cardToPlay.getPlayer());
                 if(cardToPlay.getPlayer() != null) {
                     cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
                     gameService.playCard(cardToPlay);

@@ -57,7 +57,7 @@ public class PlayerService {
         } else {
             player = playerList.getLast();
         }
-        player.getPlayerDeck().remove(card);
+        player.removeCardFromPlayerDeck(card);
     }
 
     public void botMove() {
