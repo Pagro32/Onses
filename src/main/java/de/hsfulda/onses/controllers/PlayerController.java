@@ -55,10 +55,7 @@ public class PlayerController implements Controller {
 
     @Override
     public void destroy() {
-        int i = 0;
-
-        while(i < controllers.size()) {
-            Controller controller = controllers.get(i++);
+        for (Controller controller : controllers) {
             controller.destroy();
         }
     }
