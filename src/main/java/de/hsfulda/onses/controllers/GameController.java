@@ -26,6 +26,7 @@ public class GameController implements Controller {
         final Pane enemyPane = (Pane) parent.lookup("#enemyPane");
         final Pane playerPane = (Pane) parent.lookup("#playerPane");
         final Button playButton = (Button) parent.lookup("#playCardBtn");
+        final Button drawCardButton = (Button) parent.lookup("#drawCardBtn");
 
         CardController lastPlayedCardController = new CardController(game.getLastPlayedCard(), null);
         PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
@@ -48,6 +49,10 @@ public class GameController implements Controller {
                     gameService.playCard(cardToPlay);
                 }
             }
+        });
+
+        drawCardButton.setOnAction(e -> {
+            gameService.drawCard(1);
         });
 
 
