@@ -54,7 +54,8 @@ public class GameService {
                 player = game.getPlayerService().getPlayerList().getLast();
             }
             for (int i = 0; i < amount; i++) {
-                player.getPlayerDeck().add(game.getDrawCardDeck().getFirst().setFacedown(isFaceDown));
+                Card newCard = game.getDrawCardDeck().getFirst().setFacedown(isFaceDown).setPlayer(player);
+                player.getPlayerDeck().add(newCard);
                 game.getDrawCardDeck().removeFirst();
             }
             if (amount == 1 && !player.getPlayerDeck().isEmpty()) {
@@ -133,6 +134,9 @@ public class GameService {
     }
 
     public void playCard(Card card) {
+        if(card.getPlayer() != null) {
+            card.getPlayer().removeCardFromPlayerDeck(card);
+        }
         // add lastPlayedCard back to drawCardDeck
         this.addLastPlayedCardToDrawCardDeck();
         game.setLastPlayedCard(card);
