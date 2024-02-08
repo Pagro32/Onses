@@ -114,4 +114,15 @@ public class PlayerTest {
         player.setCurrentCard(card);
         assertEquals(card, player.getCurrentCard());
     }
+
+    @Test
+    @DisplayName("Set Player by Card")
+    void testPlayerSetByCard() {
+        Player player = new Player();
+        Card card = new Card();
+
+        assertNull(card.getPlayer());
+        player.addCardToPlayerDeck(card);
+        assertEquals(player, card.getPlayer());
+    }
 }
