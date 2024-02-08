@@ -41,7 +41,14 @@ public class GameController implements Controller {
         });
 
         playButton.setOnAction(e -> {
-            gameService.playCard(new Card().setColor(Card.Color.GREEN).setValue(Card.Value.ONE));
+            Card cardToPlay = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            if(gameService.legalMove(cardToPlay)) {
+                System.out.println(cardToPlay.getPlayer());
+                if(cardToPlay.getPlayer() != null) {
+                    cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
+                    gameService.playCard(cardToPlay);
+                }
+            }
         });
 
 
