@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class PlayerController implements Controller {
@@ -43,5 +42,15 @@ public class PlayerController implements Controller {
         playerNameLabel.setText(player.getPlayerName());
 
         return parent;
+    }
+
+    @Override
+    public String getTitle() {
+        return "Onses - Uno Game";
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }

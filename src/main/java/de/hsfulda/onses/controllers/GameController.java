@@ -62,4 +62,14 @@ public class GameController implements Controller {
 
         return parent;
     }
+
+    @Override
+    public String getTitle() {
+        return "Onses - Uno Game";
+    }
+
+    @Override
+    public void destroy() {
+
+    }
 }

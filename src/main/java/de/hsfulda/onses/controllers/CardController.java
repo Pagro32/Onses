@@ -84,4 +84,14 @@ public class CardController implements Controller {
     private String addStyle(String oldStyle, String newStyle) {
         return oldStyle + "; " + newStyle;
     }
+
+    @Override
+    public String getTitle() {
+        return "Onses - Uno Game";
+    }
+
+    @Override
+    public void destroy() {
+
+    }
 }

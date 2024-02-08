@@ -6,4 +6,8 @@ import java.io.IOException;
 
 public interface Controller {
     Parent render() throws IOException;
+
+    void destroy();
+
+    String getTitle();
 }

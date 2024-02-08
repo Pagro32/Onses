@@ -41,5 +41,10 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Button fx:id="exitBtn" layoutX="1048.0" layoutY="53.0" mnemonicParsing="false" text="return to menu" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="53.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
