@@ -39,6 +39,10 @@ public class GameController implements Controller {
         final Button playButton = (Button) parent.lookup("#playCardBtn");
         final Button drawCardButton = (Button) parent.lookup("#drawCardBtn");
         final Button exitGameButton = (Button) parent.lookup("#exitBtn");
+        final Button wishRedButton = (Button) parent.lookup("#btnWishRed");
+        final Button wishBlueButton = (Button) parent.lookup("#btnWishBlue");
+        final Button wishGreenButton = (Button) parent.lookup("#btnWishGreen");
+        final Button wishYellowButton = (Button) parent.lookup("#btnWishYellow");
 
         CardController lastPlayedCardController = new CardController(game.getLastPlayedCard(), null);
         PlayerController playerController = new PlayerController(gameService.getGame().getPlayerService().getPlayerList().getFirst());
@@ -47,6 +51,26 @@ public class GameController implements Controller {
         controllers.add(lastPlayedCardController);
         controllers.add(playerController);
         controllers.add(enemyController);
+
+        wishRedButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.RED);
+        });
+
+        wishBlueButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.BLUE);
+        });
+
+        wishGreenButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.GREEN);
+        });
+
+        wishYellowButton.setOnAction(e -> {
+            Card currentSelectedCard = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
+            currentSelectedCard.setColor(Card.Color.YELLOW);
+        });
 
         lastPlayedCardPropertyChangeListener = e -> {
             lastPlayedCardPane.getChildren().removeAll();
@@ -71,7 +95,14 @@ public class GameController implements Controller {
 
         playButton.setOnAction(e -> {
             Card cardToPlay = game.getPlayerService().getPlayerList().getFirst().getCurrentCard();
-            if(gameService.legalMove(cardToPlay)) {
+            if(cardToPlay.getValue().equals(Card.Value.CHOOSE) || cardToPlay.getValue().equals(Card.Value.CHOOSEDRAW)) {
+                if(!cardToPlay.getColor().equals(Card.Color.BLACK)) {
+                    if(cardToPlay.getPlayer() != null) {
+                        cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
+                        gameService.playCard(cardToPlay);
+                    }
+                }
+            } else if(gameService.legalMove(cardToPlay)){
                 if(cardToPlay.getPlayer() != null) {
                     cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
                     gameService.playCard(cardToPlay);

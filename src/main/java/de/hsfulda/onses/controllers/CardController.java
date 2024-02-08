@@ -18,6 +18,7 @@ public class CardController implements Controller {
     private final Player player;
 
     private PropertyChangeListener cardSelectedChangeListener;
+    private PropertyChangeListener cardColorChangeListener;
 
     public CardController(Card card, Player player) {
         this.card = card;
@@ -83,6 +84,17 @@ public class CardController implements Controller {
         };
         card.listeners().addPropertyChangeListener(Card.PROPERTY_SELECTED, cardSelectedChangeListener);
 
+        cardColorChangeListener = e -> {
+            switch((Card.Color)e.getNewValue()) {
+                case RED -> mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-background-color: red"));
+                case BLUE -> mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-background-color: blue"));
+                case GREEN -> mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-background-color: green"));
+                case YELLOW -> mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-background-color: yellow"));
+                default -> mainPane.setStyle(addStyle(mainPane.getStyle(), "-fx-background-color: black"));
+            }
+        };
+        card.listeners().addPropertyChangeListener(Card.PROPERTY_COLOR, cardColorChangeListener);
+
         return parent;
     }
 
@@ -98,5 +110,6 @@ public class CardController implements Controller {
     @Override
     public void destroy() {
         card.listeners().removePropertyChangeListener(Card.PROPERTY_SELECTED, cardSelectedChangeListener);
+        card.listeners().removePropertyChangeListener(Card.PROPERTY_COLOR, cardColorChangeListener);
     }
 }

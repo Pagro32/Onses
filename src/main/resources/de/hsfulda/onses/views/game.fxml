@@ -13,12 +13,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnWishRed" layoutX="1160.0" layoutY="507.0" mnemonicParsing="false" style="-fx-background-color: red; -fx-pref-width: 30px; -fx-pref-height: 30px; -fx-cursor: pointer;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="64.0">
+      <Button fx:id="btnWishRed" layoutX="1160.0" layoutY="507.0" mnemonicParsing="false" style="-fx-background-color: red; -fx-pref-width: 30px; -fx-pref-height: 30px;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="64.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnWishGreen" layoutX="1160.0" layoutY="549.0" mnemonicParsing="false" style="-fx-background-color: green; -fx-pref-width: 30px; -fx-pref-height: 30px; -fx-cursor: pointer;" AnchorPane.bottomAnchor="111.0" AnchorPane.rightAnchor="64.0">
+      <Button fx:id="btnWishGreen" layoutX="1160.0" layoutY="549.0" mnemonicParsing="false" style="-fx-background-color: green; -fx-pref-width: 30px; -fx-pref-height: 30px;" AnchorPane.bottomAnchor="111.0" AnchorPane.rightAnchor="64.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
