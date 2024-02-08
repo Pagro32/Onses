@@ -98,13 +98,11 @@ public class GameController implements Controller {
             if(cardToPlay.getValue().equals(Card.Value.CHOOSE) || cardToPlay.getValue().equals(Card.Value.CHOOSEDRAW)) {
                 if(!cardToPlay.getColor().equals(Card.Color.BLACK)) {
                     if(cardToPlay.getPlayer() != null) {
-                        cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
                         gameService.playCard(cardToPlay);
                     }
                 }
             } else if(gameService.legalMove(cardToPlay)){
                 if(cardToPlay.getPlayer() != null) {
-                    cardToPlay.getPlayer().removeCardFromPlayerDeck(cardToPlay);
                     gameService.playCard(cardToPlay);
                 }
             }

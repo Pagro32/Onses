@@ -15,10 +15,20 @@ public class App extends Application {
 
     private Stage stage;
     private Controller controller;
+
+    private final GameService gameService;
+
+    public App() {
+        this(new GameService());
+    }
+
+    public App(GameService gameService) {
+        this.gameService = gameService;
+    }
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        final AppController appController = new AppController(this, new GameService());
+        final AppController appController = new AppController(this, this.gameService);
 
         stage.setScene(new Scene(new Label("Loading...")));
         stage.setOnCloseRequest(e -> controller.destroy());

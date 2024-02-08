@@ -71,7 +71,7 @@ public class Game {
     }
 
     public void setGameOver(boolean gameOver) {
-        final boolean oldValue = gameOver;
+        final boolean oldValue = this.gameOver;
         this.gameOver = gameOver;
         this.firePropertyChange(PROPERTY_GAME_OVER, oldValue, gameOver);
     }
