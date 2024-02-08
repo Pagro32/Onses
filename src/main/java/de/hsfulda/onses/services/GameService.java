@@ -55,7 +55,7 @@ public class GameService {
             }
             for (int i = 0; i < amount; i++) {
                 Card newCard = game.getDrawCardDeck().getFirst().setFacedown(isFaceDown).setPlayer(player);
-                player.getPlayerDeck().add(newCard);
+                player.addCardToPlayerDeck(newCard);
                 game.getDrawCardDeck().removeFirst();
             }
             if (amount == 1 && !player.getPlayerDeck().isEmpty()) {
@@ -66,6 +66,7 @@ public class GameService {
                     playCard(drawnCard);
                 }
                 else nextPlayer();
+                game.getPlayerService().botMove();
             }
         }
         if (amount != 1) {
