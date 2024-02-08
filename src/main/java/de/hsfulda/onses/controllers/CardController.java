@@ -53,6 +53,7 @@ public class CardController implements Controller {
                 case CHOOSE -> cardName.setText("wish card");
                 case DRAWTWO -> cardName.setText("+2");
                 case REVERSE -> cardName.setText("reverse");
+                case CHOOSEDRAW -> cardName.setText("+4");
             }
         }
 
