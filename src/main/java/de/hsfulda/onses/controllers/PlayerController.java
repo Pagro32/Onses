@@ -9,11 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PlayerController implements Controller {
 
     private final Player player;
+    private final ArrayList<Controller> controllers = new ArrayList<>();
 
     public PlayerController(Player player) {
         this.player = player;
@@ -25,7 +27,9 @@ public class PlayerController implements Controller {
         final HBox cards = (HBox) parent.lookup("#cardsHBox");
 
         for(Card card : player.getPlayerDeck()) {
-            cards.getChildren().add(new CardController(card, player).render());
+            CardController newCardController = new CardController(card, player);
+            controllers.add(newCardController);
+            cards.getChildren().add(newCardController.render());
         }
 
         player.listeners().addPropertyChangeListener(Player.PROPERTY_PLAYER_DECK, e -> {
@@ -51,6 +55,11 @@ public class PlayerController implements Controller {
 
     @Override
     public void destroy() {
+        int i = 0;
 
+        while(i < controllers.size()) {
+            Controller controller = controllers.get(i++);
+            controller.destroy();
+        }
     }
 }

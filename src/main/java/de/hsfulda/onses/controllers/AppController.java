@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class AppController implements Controller {
@@ -15,13 +16,16 @@ public class AppController implements Controller {
     private final GameService gameService;
     private final App app;
 
+    private final ArrayList<Controller> controllers = new ArrayList<>();
+
     public AppController(App app, GameService gameService) {
         this.app = app;
-         this.gameService = gameService;
+        this.gameService = gameService;
     }
     @Override
     public Parent render() throws IOException {
-        GameController gameController = new GameController(gameService);
+        GameController gameController = new GameController(app, gameService);
+        controllers.add(gameController);
         final Parent parent = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("views/app.fxml")));
         Button button = (Button) parent.lookup("#startGameBtn");
 
@@ -38,6 +42,11 @@ public class AppController implements Controller {
 
     @Override
     public void destroy() {
+        int i = 0;
 
+        while(i < controllers.size()) {
+            Controller controller = controllers.get(i++);
+            controller.destroy();
+        }
     }
 }
