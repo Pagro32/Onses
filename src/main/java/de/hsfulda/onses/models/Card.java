@@ -16,6 +16,8 @@ public class Card {
     private boolean facedown = false;
     private boolean selected;
 
+    private Player player;
+
     public enum Color {
         RED, BLUE, GREEN, YELLOW, BLACK;
     };
@@ -62,6 +64,15 @@ public class Card {
         final boolean oldValue = this.selected;
         this.selected = selected;
         this.firePropertyChange(PROPERTY_SELECTED, oldValue, selected);
+        return this;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Card setPlayer(Player player) {
+        this.player = player;
         return this;
     }
 
